@@ -27,8 +27,8 @@ const SocialCard = ({ platform, username, link, icon }: SocialCardProps) => {
             {icon === "mail" && <Mail className="h-6 w-6" />}
           </div>
           <div>
-            <h3 className="font-medium">{platform}</h3>
-            <p className="text-sm text-muted-foreground">{username}</p>
+            <h3 className="font-medium text-foreground">{platform}</h3>
+            <p className="text-sm text-muted-foreground font-medium">{username}</p>
           </div>
         </CardContent>
       </Card>

@@ -138,12 +138,44 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-medium;
+  }
+  
+  /* Ensure text is crisp and high-quality */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold text-foreground;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  p, span, a, button {
+    @apply font-medium;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
 @layer utilities {
   .animate-fade-in {
     animation: fade-in 0.4s ease-out forwards;
+  }
+  
+  /* Glass card effect */
+  .glass-card {
+    @apply bg-card/30 backdrop-blur-md border border-border/40;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

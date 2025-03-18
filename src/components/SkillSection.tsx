@@ -9,18 +9,18 @@ interface SkillCategoryProps {
 const SkillCategory = ({ title, skills }: SkillCategoryProps) => {
   return (
     <div className="space-y-3">
-      <h3 className="text-xl font-semibold">{title}</h3>
+      <h3 className="text-xl font-semibold text-foreground">{title}</h3>
       <div className="space-y-2">
         {skills.map((skill) => (
           <div key={skill.name} className="flex items-center gap-2">
-            <span className="text-sm min-w-[120px]">{skill.name}</span>
+            <span className="text-sm min-w-[120px] font-medium text-foreground">{skill.name}</span>
             <div className="h-2 flex-1 bg-muted rounded-full overflow-hidden">
               <div 
                 className="h-full bg-primary rounded-full" 
                 style={{ width: `${skill.level}%` }}
               />
             </div>
-            <span className="text-xs text-muted-foreground">{skill.level}%</span>
+            <span className="text-xs text-muted-foreground font-medium">{skill.level}%</span>
           </div>
         ))}
       </div>
