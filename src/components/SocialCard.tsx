@@ -17,7 +17,7 @@ const SocialCard = ({ platform, username, link, icon }: SocialCardProps) => {
       rel="noopener noreferrer" 
       className="block group"
     >
-      <Card className="border border-border/50 bg-card/60 backdrop-blur-md hover:shadow-lg transition-all group-hover:scale-105 duration-300">
+      <Card className="border border-border/40 bg-card/30 backdrop-blur-md hover:shadow-lg transition-all group-hover:scale-105 duration-300">
         <CardContent className="p-6 flex items-center gap-4">
           <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-all">
             {icon === "facebook" && <Facebook className="h-6 w-6" />}

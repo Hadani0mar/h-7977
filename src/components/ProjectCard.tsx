@@ -11,7 +11,7 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ title, description, link }: ProjectCardProps) => {
   return (
-    <Card className="border border-border/50 bg-card/60 backdrop-blur-md hover:shadow-lg transition-all hover:scale-105 duration-300">
+    <Card className="border border-border/40 bg-card/30 backdrop-blur-md hover:shadow-lg transition-all hover:scale-105 duration-300">
       <CardContent className="p-6">
         <h3 className="text-xl font-semibold mb-2">{title}</h3>
         <p className="text-muted-foreground">{description}</p>

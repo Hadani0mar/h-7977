@@ -54,7 +54,7 @@ const SkillSection = () => {
   ];
 
   return (
-    <Card className="border border-border/50 bg-card/80 backdrop-blur-sm hover:shadow-lg transition-all">
+    <Card className="border border-border/40 bg-card/30 backdrop-blur-md hover:shadow-lg transition-all">
       <CardContent className="p-6 space-y-8">
         <SkillCategory title="لغات تطوير الواجهة الأمامية" skills={frontendSkills} />
         <SkillCategory title="أطر العمل والمكتبات" skills={frameworksLibraries} />

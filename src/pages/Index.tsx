@@ -1,13 +1,14 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
-import { Github, Facebook, Instagram, Mail, Moon, Sun, Monitor } from "lucide-react";
-import ThemeProvider, { useTheme } from "@/components/ThemeProvider";
+import { Slider } from "@/components/ui/slider";
+import { Github, Facebook, Instagram, Mail, Moon, Sun, Monitor, CheckCircle } from "lucide-react";
+import ThemeProvider, { useTheme, Theme } from "@/components/ThemeProvider";
 import SocialCard from "@/components/SocialCard";
 import ProjectCard from "@/components/ProjectCard";
 import SkillSection from "@/components/SkillSection";
@@ -16,32 +17,42 @@ import ColorSelector from "@/components/ColorSelector";
 const Index = () => {
   const [activeTab, setActiveTab] = useState("home");
   const [accentColor, setAccentColor] = useState("blue");
-  // Updated theme type to use the Theme type from ThemeProvider
-  const [theme, setTheme] = useState<"light" | "dark" | "system">("system");
+  const [fontSize, setFontSize] = useState(100); // 100% is default
+  const [theme, setTheme] = useState<Theme>("system");
+  const { setTheme: setGlobalTheme } = useTheme();
 
-  const handleThemeChange = (selectedTheme: "light" | "dark" | "system") => {
+  const handleThemeChange = (selectedTheme: Theme) => {
     setTheme(selectedTheme);
-    document.documentElement.setAttribute("data-theme", selectedTheme);
-    
-    if (selectedTheme === "system") {
-      const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      document.documentElement.classList.toggle("dark", isDark);
-    } else {
-      document.documentElement.classList.toggle("dark", selectedTheme === "dark");
-    }
+    setGlobalTheme(selectedTheme);
   };
+
+  // Apply font size to root element
+  useEffect(() => {
+    document.documentElement.style.setProperty('--font-size-xs', `${0.75 * fontSize / 100}rem`);
+    document.documentElement.style.setProperty('--font-size-sm', `${0.875 * fontSize / 100}rem`);
+    document.documentElement.style.setProperty('--font-size-base', `${1 * fontSize / 100}rem`);
+    document.documentElement.style.setProperty('--font-size-lg', `${1.125 * fontSize / 100}rem`);
+    document.documentElement.style.setProperty('--font-size-xl', `${1.25 * fontSize / 100}rem`);
+    document.documentElement.style.setProperty('--font-size-2xl', `${1.5 * fontSize / 100}rem`);
+    document.documentElement.style.setProperty('--font-size-3xl', `${1.875 * fontSize / 100}rem`);
+    document.documentElement.style.setProperty('--font-size-4xl', `${2.25 * fontSize / 100}rem`);
+    document.documentElement.style.setProperty('--font-size-5xl', `${3 * fontSize / 100}rem`);
+  }, [fontSize]);
+
+  // Apply accent color
+  useEffect(() => {
+    document.documentElement.dataset.accent = accentColor;
+  }, [accentColor]);
 
   return (
     <ThemeProvider initialTheme={theme}>
-      <div className="min-h-screen bg-background text-foreground pb-20">
+      <div className="min-h-screen bg-background text-foreground pb-20 font-tajawal">
         {/* Header */}
         <header className="py-6 px-4 md:px-6 flex justify-center items-center">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight flex items-center justify-center gap-2">
               Bn0mar
-              <Badge variant="outline" className="ml-2 bg-yellow-400 text-black">
-                <span className="text-xs">✓</span>
-              </Badge>
+              <CheckCircle className="h-6 w-6 text-blue-500 fill-blue-500" />
             </h1>
             <p className="mt-2 text-muted-foreground">Frontend Developer & UI Designer</p>
           </div>
@@ -56,7 +67,7 @@ const Index = () => {
             className="w-full"
           >
             <TabsContent value="home" className="animate-fade-in space-y-6">
-              <Card className="border border-border/50 bg-card/80 backdrop-blur-sm hover:shadow-lg transition-all">
+              <Card className="border border-border/40 bg-card/30 backdrop-blur-md hover:shadow-lg transition-all">
                 <CardContent className="p-6">
                   <h2 className="text-2xl font-semibold mb-4">مرحباً بك في ملفي الشخصي</h2>
                   <p className="text-muted-foreground">
@@ -64,7 +75,7 @@ const Index = () => {
                     باستخدام أحدث التقنيات والأدوات.
                   </p>
                   
-                  <div className="mt-6 p-4 bg-primary/10 rounded-lg">
+                  <div className="mt-6 p-4 bg-primary/5 backdrop-blur-sm rounded-lg">
                     <h3 className="text-lg font-medium mb-2">كيفية استخدام الموقع:</h3>
                     <ul className="list-disc list-inside space-y-2 text-muted-foreground">
                       <li>استعرض مهاراتي التقنية في قسم <strong>المهارات</strong></li>
@@ -132,7 +143,7 @@ const Index = () => {
             </TabsContent>
             
             <TabsContent value="settings" className="animate-fade-in space-y-6">
-              <Card className="border border-border/50 bg-card/80 backdrop-blur-sm hover:shadow-lg transition-all">
+              <Card className="border border-border/40 bg-card/30 backdrop-blur-md hover:shadow-lg transition-all">
                 <CardContent className="p-6">
                   <h2 className="text-2xl font-semibold mb-6">الإعدادات</h2>
                   
@@ -171,13 +182,32 @@ const Index = () => {
                       <h3 className="text-lg font-medium">ألوان الواجهة</h3>
                       <ColorSelector onChange={(color) => setAccentColor(color)} />
                     </div>
+
+                    <div className="space-y-4">
+                      <h3 className="text-lg font-medium">حجم الخط</h3>
+                      <div className="flex items-center gap-4">
+                        <span className="text-sm">صغير</span>
+                        <Slider 
+                          value={[fontSize]} 
+                          min={75} 
+                          max={150} 
+                          step={5} 
+                          onValueChange={(values) => setFontSize(values[0])}
+                          className="flex-1"
+                        />
+                        <span className="text-sm">كبير</span>
+                        <span className="text-xs bg-primary/10 px-2 py-1 rounded-md ml-2">
+                          {fontSize}%
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
             </TabsContent>
 
             {/* Bottom Tab Navigation - Moved into the Tabs component */}
-            <div className="fixed bottom-0 left-0 right-0 bg-background/80 backdrop-blur-md border-t border-border z-10">
+            <div className="fixed bottom-0 left-0 right-0 bg-background/60 backdrop-blur-md border-t border-border z-10">
               <div className="container mx-auto px-4">
                 <TabsList className="w-full h-16">
                   <TabsTrigger value="home">الرئيسية</TabsTrigger>

@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -88,6 +89,47 @@
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
+  /* Accent colors */
+  [data-accent="blue"] {
+    --primary: 222.2 47.4% 40%;
+  }
+
+  [data-accent="purple"] {
+    --primary: 270 76% 40%;
+  }
+
+  [data-accent="pink"] {
+    --primary: 330 76% 40%;
+  }
+
+  [data-accent="green"] {
+    --primary: 142 76% 40%;
+  }
+
+  [data-accent="orange"] {
+    --primary: 30 76% 40%;
+  }
+
+  .dark[data-accent="blue"] {
+    --primary: 222.2 70% 70%;
+  }
+
+  .dark[data-accent="purple"] {
+    --primary: 270 70% 70%;
+  }
+
+  .dark[data-accent="pink"] {
+    --primary: 330 70% 70%;
+  }
+
+  .dark[data-accent="green"] {
+    --primary: 142 70% 70%;
+  }
+
+  .dark[data-accent="orange"] {
+    --primary: 30 70% 70%;
+  }
 }
 
 @layer base {
@@ -97,5 +139,11 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fade-in 0.4s ease-out forwards;
   }
 }

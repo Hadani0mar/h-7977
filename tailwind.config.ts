@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -18,6 +19,20 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				'tajawal': ['Tajawal', 'sans-serif'],
+			},
+			fontSize: {
+				'xs': 'var(--font-size-xs, 0.75rem)',
+				'sm': 'var(--font-size-sm, 0.875rem)',
+				'base': 'var(--font-size-base, 1rem)',
+				'lg': 'var(--font-size-lg, 1.125rem)',
+				'xl': 'var(--font-size-xl, 1.25rem)',
+				'2xl': 'var(--font-size-2xl, 1.5rem)',
+				'3xl': 'var(--font-size-3xl, 1.875rem)',
+				'4xl': 'var(--font-size-4xl, 2.25rem)',
+				'5xl': 'var(--font-size-5xl, 3rem)',
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -84,11 +99,16 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in': {
+					from: { opacity: '0' },
+					to: { opacity: '1' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.5s ease-out forwards'
 			}
 		}
 	},
