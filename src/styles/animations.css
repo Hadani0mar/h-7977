@@ -1,5 +1,6 @@
 
-@keyframes fadeIn {
+/* Existing animations */
+@keyframes fade-in {
   from {
     opacity: 0;
     transform: translateY(10px);
@@ -10,21 +11,129 @@
   }
 }
 
-@keyframes scaleIn {
+/* Stars background animation */
+@keyframes animStar {
   from {
-    transform: scale(0.95);
-    opacity: 0;
+    transform: translateY(0px);
   }
   to {
-    transform: scale(1);
-    opacity: 1;
+    transform: translateY(-2000px);
   }
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.3s ease-out forwards;
+@keyframes moveSpotlight {
+  0%, 100% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
 }
 
-.animate-scale-in {
-  animation: scaleIn 0.2s ease-out forwards;
+/* Spotlight effect for skill cards */
+.skill-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-spotlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.skill-card:hover .skill-spotlight {
+  opacity: 1;
+}
+
+/* Tab spotlight effect */
+.tab-trigger {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.tab-spotlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(var(--primary-rgb), 0.4) 0%, rgba(var(--primary-rgb), 0) 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.tab-trigger[data-state="active"] .tab-spotlight,
+.tab-trigger:hover .tab-spotlight {
+  opacity: 1;
+}
+
+/* Space background */
+.space-background {
+  position: relative;
+  overflow: hidden;
+  min-height: 500px;
+}
+
+.stars-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  background: linear-gradient(to bottom, rgba(0,0,20,0.7) 0%, rgba(0,0,20,0.2) 100%);
+}
+
+.stars, .stars2, .stars3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.stars {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice"><g fill="white"><circle cx="50" cy="50" r="1"/><circle cx="150" cy="150" r="1"/><circle cx="350" cy="250" r="0.8"/><circle cx="250" cy="350" r="1"/><circle cx="450" cy="450" r="0.6"/><circle cx="550" cy="350" r="1"/><circle cx="650" cy="250" r="0.8"/><circle cx="750" cy="150" r="0.6"/><circle cx="850" cy="50" r="1"/><circle cx="950" cy="350" r="0.8"/><circle cx="150" cy="750" r="1"/><circle cx="250" cy="850" r="0.6"/><circle cx="350" cy="950" r="1"/><circle cx="450" cy="550" r="0.8"/><circle cx="550" cy="650" r="1"/><circle cx="650" cy="750" r="0.6"/><circle cx="750" cy="850" r="0.8"/><circle cx="850" cy="950" r="1"/><circle cx="950" cy="550" r="1"/><circle cx="550" cy="950" r="0.6"/></g></svg>') repeat;
+  animation: animStar 100s linear infinite;
+}
+
+.stars2 {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice"><g fill="white"><circle cx="50" cy="150" r="0.5"/><circle cx="150" cy="250" r="0.5"/><circle cx="350" cy="350" r="0.5"/><circle cx="250" cy="450" r="0.5"/><circle cx="450" cy="550" r="0.5"/><circle cx="550" cy="450" r="0.5"/><circle cx="650" cy="350" r="0.5"/><circle cx="750" cy="250" r="0.5"/><circle cx="850" cy="150" r="0.5"/><circle cx="950" cy="450" r="0.5"/><circle cx="150" cy="650" r="0.5"/><circle cx="250" cy="750" r="0.5"/><circle cx="350" cy="850" r="0.5"/><circle cx="450" cy="650" r="0.5"/><circle cx="550" cy="750" r="0.5"/><circle cx="650" cy="850" r="0.5"/><circle cx="750" cy="750" r="0.5"/><circle cx="850" cy="850" r="0.5"/><circle cx="950" cy="650" r="0.5"/><circle cx="550" cy="850" r="0.5"/></g></svg>') repeat;
+  animation: animStar 125s linear infinite;
+}
+
+.stars3 {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice"><g fill="white"><circle cx="50" cy="250" r="0.3"/><circle cx="150" cy="350" r="0.3"/><circle cx="350" cy="450" r="0.3"/><circle cx="250" cy="550" r="0.3"/><circle cx="450" cy="650" r="0.3"/><circle cx="550" cy="550" r="0.3"/><circle cx="650" cy="450" r="0.3"/><circle cx="750" cy="350" r="0.3"/><circle cx="850" cy="250" r="0.3"/><circle cx="950" cy="550" r="0.3"/><circle cx="150" cy="550" r="0.3"/><circle cx="250" cy="650" r="0.3"/><circle cx="350" cy="750" r="0.3"/><circle cx="450" cy="750" r="0.3"/><circle cx="550" cy="550" r="0.3"/><circle cx="650" cy="650" r="0.3"/><circle cx="750" cy="650" r="0.3"/><circle cx="850" cy="750" r="0.3"/><circle cx="950" cy="750" r="0.3"/><circle cx="550" cy="750" r="0.3"/></g></svg>') repeat;
+  animation: animStar 150s linear infinite;
+}
+
+/* Glass card effect */
+.glass-card {
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+}
+
+.dark .glass-card {
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }

@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
-import { CheckCircle, Moon, Sun, Monitor } from "lucide-react";
+import { CheckCircle, Moon, Sun, Monitor, Home, Code, Briefcase, Mail, Settings } from "lucide-react";
 import { useTheme, Theme } from "@/components/ThemeProvider";
 import SocialCard from "@/components/SocialCard";
 import ProjectCard from "@/components/ProjectCard";
@@ -43,7 +43,7 @@ const Index = () => {
         <div className="text-center">
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight flex items-center justify-center gap-2 text-foreground">
             Bn0mar
-            <CheckCircle className="h-6 w-6 text-blue-500 fill-blue-500" />
+            <CheckCircle className="h-6 w-6 text-primary fill-primary" />
           </h1>
           <p className="mt-2 text-muted-foreground font-medium">Frontend Developer & UI Designer</p>
         </div>
@@ -58,7 +58,7 @@ const Index = () => {
           className="w-full"
         >
           <TabsContent value="home" className="animate-fade-in space-y-6">
-            <Card className="border border-border/40 bg-card/30 backdrop-blur-md hover:shadow-lg transition-all">
+            <Card className="border border-border/40 bg-card/30 backdrop-blur-md hover:shadow-lg transition-all glass-card">
               <CardContent className="p-6">
                 <h2 className="text-2xl font-semibold mb-4 text-foreground">مرحباً بك في ملفي الشخصي</h2>
                 <p className="text-muted-foreground font-medium">
@@ -66,7 +66,7 @@ const Index = () => {
                   باستخدام أحدث التقنيات والأدوات.
                 </p>
                 
-                <div className="mt-6 p-4 bg-primary/5 backdrop-blur-sm rounded-lg">
+                <div className="mt-6 p-4 bg-primary/5 backdrop-blur-sm rounded-lg glass-card">
                   <h3 className="text-lg font-medium mb-2 text-foreground">كيفية استخدام الموقع:</h3>
                   <ul className="list-disc list-inside space-y-2 text-muted-foreground font-medium">
                     <li>استعرض مهاراتي التقنية في قسم <strong>المهارات</strong></li>
@@ -79,7 +79,7 @@ const Index = () => {
             </Card>
           </TabsContent>
           
-          <TabsContent value="skills" className="animate-fade-in space-y-6">
+          <TabsContent value="skills" className="animate-fade-in">
             <SkillSection />
           </TabsContent>
           
@@ -134,7 +134,7 @@ const Index = () => {
           </TabsContent>
           
           <TabsContent value="settings" className="animate-fade-in space-y-6">
-            <Card className="border border-border/40 bg-card/30 backdrop-blur-md hover:shadow-lg transition-all">
+            <Card className="border border-border/40 bg-card/30 backdrop-blur-md hover:shadow-lg transition-all glass-card">
               <CardContent className="p-6">
                 <h2 className="text-2xl font-semibold mb-6 text-foreground">الإعدادات</h2>
                 
@@ -197,15 +197,35 @@ const Index = () => {
             </Card>
           </TabsContent>
 
-          {/* Bottom Tab Navigation */}
+          {/* Bottom Tab Navigation with Icons */}
           <div className="fixed bottom-0 left-0 right-0 bg-background/80 backdrop-blur-lg border-t border-border z-10">
             <div className="container mx-auto px-4">
               <TabsList className="w-full h-16">
-                <TabsTrigger value="home">الرئيسية</TabsTrigger>
-                <TabsTrigger value="skills">المهارات</TabsTrigger>
-                <TabsTrigger value="projects">المشاريع</TabsTrigger>
-                <TabsTrigger value="contact">التواصل</TabsTrigger>
-                <TabsTrigger value="settings">الإعدادات</TabsTrigger>
+                <TabsTrigger value="home" className="tab-trigger group">
+                  <Home className="w-5 h-5 mb-1" />
+                  <span className="text-xs">الرئيسية</span>
+                  <span className="tab-spotlight"></span>
+                </TabsTrigger>
+                <TabsTrigger value="skills" className="tab-trigger group">
+                  <Code className="w-5 h-5 mb-1" />
+                  <span className="text-xs">المهارات</span>
+                  <span className="tab-spotlight"></span>
+                </TabsTrigger>
+                <TabsTrigger value="projects" className="tab-trigger group">
+                  <Briefcase className="w-5 h-5 mb-1" />
+                  <span className="text-xs">المشاريع</span>
+                  <span className="tab-spotlight"></span>
+                </TabsTrigger>
+                <TabsTrigger value="contact" className="tab-trigger group">
+                  <Mail className="w-5 h-5 mb-1" />
+                  <span className="text-xs">التواصل</span>
+                  <span className="tab-spotlight"></span>
+                </TabsTrigger>
+                <TabsTrigger value="settings" className="tab-trigger group">
+                  <Settings className="w-5 h-5 mb-1" />
+                  <span className="text-xs">الإعدادات</span>
+                  <span className="tab-spotlight"></span>
+                </TabsTrigger>
               </TabsList>
             </div>
           </div>
