@@ -7,7 +7,7 @@ import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 import { Github, Facebook, Instagram, Mail, Moon, Sun, Monitor } from "lucide-react";
-import ThemeProvider from "@/components/ThemeProvider";
+import ThemeProvider, { useTheme } from "@/components/ThemeProvider";
 import SocialCard from "@/components/SocialCard";
 import ProjectCard from "@/components/ProjectCard";
 import SkillSection from "@/components/SkillSection";
@@ -16,9 +16,10 @@ import ColorSelector from "@/components/ColorSelector";
 const Index = () => {
   const [activeTab, setActiveTab] = useState("home");
   const [accentColor, setAccentColor] = useState("blue");
-  const [theme, setTheme] = useState("system");
+  // Updated theme type to use the Theme type from ThemeProvider
+  const [theme, setTheme] = useState<"light" | "dark" | "system">("system");
 
-  const handleThemeChange = (selectedTheme: string) => {
+  const handleThemeChange = (selectedTheme: "light" | "dark" | "system") => {
     setTheme(selectedTheme);
     document.documentElement.setAttribute("data-theme", selectedTheme);
     
