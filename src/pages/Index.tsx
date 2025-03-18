@@ -50,6 +50,7 @@ const Index = () => {
         {/* Main Content */}
         <main className="container mx-auto px-4 max-w-4xl">
           <Tabs 
+            defaultValue={activeTab} 
             value={activeTab} 
             onValueChange={setActiveTab}
             className="w-full"
@@ -174,51 +175,21 @@ const Index = () => {
                 </CardContent>
               </Card>
             </TabsContent>
+
+            {/* Bottom Tab Navigation - Moved into the Tabs component */}
+            <div className="fixed bottom-0 left-0 right-0 bg-background/80 backdrop-blur-md border-t border-border z-10">
+              <div className="container mx-auto px-4">
+                <TabsList className="w-full h-16">
+                  <TabsTrigger value="home">الرئيسية</TabsTrigger>
+                  <TabsTrigger value="skills">المهارات</TabsTrigger>
+                  <TabsTrigger value="projects">المشاريع</TabsTrigger>
+                  <TabsTrigger value="contact">التواصل</TabsTrigger>
+                  <TabsTrigger value="settings">الإعدادات</TabsTrigger>
+                </TabsList>
+              </div>
+            </div>
           </Tabs>
         </main>
-
-        {/* Bottom Tab Navigation */}
-        <div className="fixed bottom-0 left-0 right-0 bg-background/80 backdrop-blur-md border-t border-border z-10">
-          <div className="container mx-auto px-4">
-            <TabsList className="w-full h-16">
-              <TabsTrigger 
-                className="flex-1 data-[state=active]:bg-primary/20 transition-all"
-                value="home"
-                onClick={() => setActiveTab("home")}
-              >
-                الرئيسية
-              </TabsTrigger>
-              <TabsTrigger 
-                className="flex-1 data-[state=active]:bg-primary/20 transition-all"
-                value="skills"
-                onClick={() => setActiveTab("skills")}
-              >
-                المهارات
-              </TabsTrigger>
-              <TabsTrigger 
-                className="flex-1 data-[state=active]:bg-primary/20 transition-all"
-                value="projects"
-                onClick={() => setActiveTab("projects")}
-              >
-                المشاريع
-              </TabsTrigger>
-              <TabsTrigger 
-                className="flex-1 data-[state=active]:bg-primary/20 transition-all"
-                value="contact"
-                onClick={() => setActiveTab("contact")}
-              >
-                التواصل
-              </TabsTrigger>
-              <TabsTrigger 
-                className="flex-1 data-[state=active]:bg-primary/20 transition-all"
-                value="settings"
-                onClick={() => setActiveTab("settings")}
-              >
-                الإعدادات
-              </TabsTrigger>
-            </TabsList>
-          </div>
-        </div>
       </div>
     </ThemeProvider>
   );
