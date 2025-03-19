@@ -80,11 +80,11 @@ const Index = () => {
                     <ul className="list-none space-y-3 text-muted-foreground text-base">
                       <li className="flex items-start gap-2">
                         <i className="bi bi-check-circle-fill text-primary mt-1"></i>
-                        <span>استعرض مهاراتي التقنية في قسم <strong className="text-foreground">المهارات</strong> لمعرفة مستوى خبرتي في مختلف المجالات.</span></li>
+                        <span>استعرض مهاراتي التقنية في قسم <strong className="text-foreground">المهارات</strong> لمعرفة مستوى خبرتي في مختلف التقنيات.</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <i className="bi bi-check-circle-fill text-primary mt-1"></i>
-                        <span>تصفح مشاريعي السابقة في قسم <strong className="text-foreground">المشاريع</strong> للاطلاع على أعمالي السابقة.</span></li>
+                        <span>تصفح مشاريعي السابقة في قسم <strong className="text-foreground">المشاريع</strong> للاطلاع على أعمالي السابقة.</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <i className="bi bi-check-circle-fill text-primary mt-1"></i>
@@ -92,7 +92,7 @@ const Index = () => {
                       </li>
                       <li className="flex items-start gap-2">
                         <i className="bi bi-check-circle-fill text-primary mt-1"></i>
-                        <span>خصص مظهر الموقع في قسم <strong className="text-foreground">الإعدادات</strong> ليناسب تفضيلاتك</span>
+                        <span>خصص مظهر الموقع في قسم <strong className="text-foreground">الإعدادات</strong> ليناسب تفضيلاتك.</span>
                       </li>
                     </ul>
                     
@@ -132,14 +132,14 @@ const Index = () => {
                 />
                 <ProjectCard 
                   title="موقع تفاعلي" 
-                  description="موقع تفاعلي متجاوب مع جميع أحجام الشاشات، يتضمن تأثيرات حركية متقدمة وواجهة مستخدم حديثة."
+                  description="موقع تفاعلي متجاوب مع جميع أحجام الشاشات، يتضمن تأثيرات حركية متقدمة وواجهة مستخدم حديثة." 
                   link="https://example.com/project2"
                   tags={["Next.js", "Framer Motion", "Shadcn UI"]}
                   githubLink="https://github.com/username/interactive-website"
                 />
                 <ProjectCard 
                   title="منصة تعليمية" 
-                  description="منصة تعليمية متكاملة تتيح للمستخدمين متابعة دوراتهم وتقدمهم، مع نظام إدارة متكامل للمحتوى."
+                  description="منصة تعليمية متكاملة تتيح للمستخدمين متابعة دوراتهم وتقدمهم، مع نظام إدارة متكامل للمحتوى." 
                   link="https://example.com/project3"
                   tags={["React", "Node.js", "MongoDB"]}
                 />
