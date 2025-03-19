@@ -80,15 +80,15 @@ const Index = () => {
                     <ul className="list-none space-y-3 text-muted-foreground text-base">
                       <li className="flex items-start gap-2">
                         <i className="bi bi-check-circle-fill text-primary mt-1"></i>
-                        <span>استعرض مهاراتي التقنية في قسم <strong className="text-foreground">المهارات</strong> لمعرفة مستوى خبرتي في مختل�[...]
+                        <span>استعرض مهاراتي التقنية في قسم <strong className="text-foreground">المهارات</strong> لمعرفة مستوى خبرتي في مختلف المجالات.</span></li>
                       </li>
                       <li className="flex items-start gap-2">
                         <i className="bi bi-check-circle-fill text-primary mt-1"></i>
-                        <span>تصفح مشاريعي السابقة في قسم <strong className="text-foreground">المشاريع</strong> للاطلاع على أعمالي السابقة</sp[...]
+                        <span>تصفح مشاريعي السابقة في قسم <strong className="text-foreground">المشاريع</strong> للاطلاع على أعمالي السابقة.</span></li>
                       </li>
                       <li className="flex items-start gap-2">
                         <i className="bi bi-check-circle-fill text-primary mt-1"></i>
-                        <span>تواصل معي من خلال وسائل التواصل في قسم <strong className="text-foreground">التواصل</strong> للاستفسارات أو التع[...]
+                        <span>تواصل معي من خلال وسائل التواصل في قسم <strong className="text-foreground">التواصل</strong> للاستفسارات أو التعليقات.</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <i className="bi bi-check-circle-fill text-primary mt-1"></i>
@@ -132,14 +132,14 @@ const Index = () => {
                 />
                 <ProjectCard 
                   title="موقع تفاعلي" 
-                  description="موقع تفاعلي متجاوب مع جميع أحجام الشاشات، يتضمن تأثيرات حركية متقدمة وواجهة مستخدم حديثة [...]
+                  description="موقع تفاعلي متجاوب مع جميع أحجام الشاشات، يتضمن تأثيرات حركية متقدمة وواجهة مستخدم حديثة."
                   link="https://example.com/project2"
                   tags={["Next.js", "Framer Motion", "Shadcn UI"]}
                   githubLink="https://github.com/username/interactive-website"
                 />
                 <ProjectCard 
                   title="منصة تعليمية" 
-                  description="منصة تعليمية متكاملة تتيح للمستخدمين متابعة دوراتهم وتقدمهم، مع نظام إدارة متكامل للمحتو[...]
+                  description="منصة تعليمية متكاملة تتيح للمستخدمين متابعة دوراتهم وتقدمهم، مع نظام إدارة متكامل للمحتوى."
                   link="https://example.com/project3"
                   tags={["React", "Node.js", "MongoDB"]}
                 />
@@ -254,7 +254,7 @@ const Index = () => {
                       <ColorSelector onChange={(color) => setAccentColor(color)} />
                     </div>
                   </div>
-
+                  
                   <div className="space-y-4">
                     <h3 className="text-lg font-medium text-foreground flex items-center gap-2">
                       <i className="bi bi-type"></i>
