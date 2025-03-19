@@ -27,7 +27,7 @@ const Header = () => {
             <Tooltip>
               <TooltipTrigger>
                 <div 
-                  className="text-primary" 
+                  className="text-blue-500 dark:text-blue-400" 
                   title="حساب موثق"
                 >
                   <i className="bi bi-patch-check-fill text-2xl"></i>

@@ -141,15 +141,15 @@ const Tooltip = ({ step, onNext, onFinish, isLastStep, targetRect }: TooltipProp
                        'transparent transparent transparent var(--border-color)')
         }}
       ></div>
-      <h3 className="text-lg font-bold mb-2">{step.title}</h3>
-      <p className="text-sm mb-4">{step.content}</p>
+      <h3 className="text-base font-bold mb-2">{step.title}</h3>
+      <p className="text-xs mb-4">{step.content}</p>
       <div className="flex justify-between">
         <Button 
           size="sm"
           variant="ghost"
-          onClick={() => window.localStorage.setItem('tourCompleted', 'true')}
+          onClick={onFinish}
         >
-          تخطي الجولة
+          إنهاء الجولة
         </Button>
         <Button 
           size="sm"
