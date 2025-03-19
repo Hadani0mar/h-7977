@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -81,15 +80,15 @@ const Index = () => {
                     <ul className="list-none space-y-3 text-muted-foreground text-base">
                       <li className="flex items-start gap-2">
                         <i className="bi bi-check-circle-fill text-primary mt-1"></i>
-                        <span>استعرض مهاراتي التقنية في قسم <strong className="text-foreground">المهارات</strong> لمعرفة مستوى خبرتي في مختلف التقنيات</span>
+                        <span>استعرض مهاراتي التقنية في قسم <strong className="text-foreground">المهارات</strong> لمعرفة مستوى خبرتي في مختل�[...]
                       </li>
                       <li className="flex items-start gap-2">
                         <i className="bi bi-check-circle-fill text-primary mt-1"></i>
-                        <span>تصفح مشاريعي السابقة في قسم <strong className="text-foreground">المشاريع</strong> للاطلاع على أعمالي السابقة</span>
+                        <span>تصفح مشاريعي السابقة في قسم <strong className="text-foreground">المشاريع</strong> للاطلاع على أعمالي السابقة</sp[...]
                       </li>
                       <li className="flex items-start gap-2">
                         <i className="bi bi-check-circle-fill text-primary mt-1"></i>
-                        <span>تواصل معي من خلال وسائل التواصل في قسم <strong className="text-foreground">التواصل</strong> للاستفسارات أو التعاون</span>
+                        <span>تواصل معي من خلال وسائل التواصل في قسم <strong className="text-foreground">التواصل</strong> للاستفسارات أو التع[...]
                       </li>
                       <li className="flex items-start gap-2">
                         <i className="bi bi-check-circle-fill text-primary mt-1"></i>
@@ -125,22 +124,22 @@ const Index = () => {
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <ProjectCard 
-                  title="تطبيق إدارة المهام" 
-                  description="تطبيق ويب متكامل لإدارة المهام والمشاريع، مبني بتقنية React وTailwind CSS، يتميز بواجهة مستخدم جذابة وسهلة الاستخدام." 
-                  link="https://example.com/project1"
+                  title="تطبيق القرآن الكريم" 
+                  description="تطبيق يحتوي على مواقيت الصلاة، الأحاديث، والقرآن الكريم صوت وسورة." 
+                  link="https://ahadith-sdbc.web.app/"
                   tags={["React", "Tailwind CSS", "TypeScript"]}
-                  githubLink="https://github.com/username/task-manager"
+                  githubLink="https://github.com/username/ahadith-sdbc"
                 />
                 <ProjectCard 
                   title="موقع تفاعلي" 
-                  description="موقع تفاعلي متجاوب مع جميع أحجام الشاشات، يتضمن تأثيرات حركية متقدمة وواجهة مستخدم حديثة ومتطورة." 
+                  description="موقع تفاعلي متجاوب مع جميع أحجام الشاشات، يتضمن تأثيرات حركية متقدمة وواجهة مستخدم حديثة [...]
                   link="https://example.com/project2"
                   tags={["Next.js", "Framer Motion", "Shadcn UI"]}
                   githubLink="https://github.com/username/interactive-website"
                 />
                 <ProjectCard 
                   title="منصة تعليمية" 
-                  description="منصة تعليمية متكاملة تتيح للمستخدمين متابعة دوراتهم وتقدمهم، مع نظام إدارة متكامل للمحتوى والمستخدمين." 
+                  description="منصة تعليمية متكاملة تتيح للمستخدمين متابعة دوراتهم وتقدمهم، مع نظام إدارة متكامل للمحتو[...]
                   link="https://example.com/project3"
                   tags={["React", "Node.js", "MongoDB"]}
                 />
@@ -254,39 +253,39 @@ const Index = () => {
                       </h3>
                       <ColorSelector onChange={(color) => setAccentColor(color)} />
                     </div>
+                  </div>
 
-                    <div className="space-y-4">
-                      <h3 className="text-lg font-medium text-foreground flex items-center gap-2">
-                        <i className="bi bi-type"></i>
-                        حجم الخط
-                      </h3>
-                      <div className="flex items-center gap-4">
-                        <span className="text-sm font-medium">صغير</span>
-                        <Slider 
-                          value={[fontSize]} 
-                          min={75} 
-                          max={150} 
-                          step={5} 
-                          onValueChange={(values) => setFontSize(values[0])}
-                          className="flex-1"
-                        />
-                        <span className="text-sm font-medium">كبير</span>
-                        <span className="text-xs bg-primary/10 px-2 py-1 rounded-md ml-2 font-medium">
-                          {fontSize}%
-                        </span>
-                      </div>
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-medium text-foreground flex items-center gap-2">
+                      <i className="bi bi-type"></i>
+                      حجم الخط
+                    </h3>
+                    <div className="flex items-center gap-4">
+                      <span className="text-sm font-medium">صغير</span>
+                      <Slider 
+                        value={[fontSize]} 
+                        min={75} 
+                        max={150} 
+                        step={5} 
+                        onValueChange={(values) => setFontSize(values[0])}
+                        className="flex-1"
+                      />
+                      <span className="text-sm font-medium">كبير</span>
+                      <span className="text-xs bg-primary/10 px-2 py-1 rounded-md ml-2 font-medium">
+                        {fontSize}%
+                      </span>
                     </div>
-                    
-                    <div className="pt-4 border-t border-border/40">
-                      <Button 
-                        variant="outline" 
-                        className="w-full gap-2 hover-lift"
-                        onClick={() => restartTourGuide()}
-                      >
-                        <i className="bi bi-arrow-repeat"></i>
-                        إعادة تشغيل الجولة التعريفية
-                      </Button>
-                    </div>
+                  </div>
+                  
+                  <div className="pt-4 border-t border-border/40">
+                    <Button 
+                      variant="outline" 
+                      className="w-full gap-2 hover-lift"
+                      onClick={() => restartTourGuide()}
+                    >
+                      <i className="bi bi-arrow-repeat"></i>
+                      إعادة تشغيل الجولة التعريفية
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
