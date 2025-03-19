@@ -22,12 +22,46 @@ export const setActiveTab = (tabId: string) => {
 };
 
 /**
- * Scrolls to a specific element by selector
+ * Scrolls to a specific element by selector with improved behavior
  * @param selector CSS selector for the target element
  */
 export const scrollToElement = (selector: string) => {
-  const element = document.querySelector(selector);
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // Small delay to ensure DOM is updated
+  setTimeout(() => {
+    const element = document.querySelector(selector);
+    if (element) {
+      // Calculate position to center the element in the viewport
+      const elementRect = element.getBoundingClientRect();
+      const absoluteElementTop = elementRect.top + window.pageYOffset;
+      const middle = absoluteElementTop - (window.innerHeight / 2) + (elementRect.height / 2);
+      
+      // Smooth scroll to the element
+      window.scrollTo({
+        top: middle,
+        behavior: 'smooth'
+      });
+      
+      // Add a subtle highlight animation to draw attention
+      element.classList.add('pulse-highlight');
+      setTimeout(() => {
+        element.classList.remove('pulse-highlight');
+      }, 1500);
+    }
+  }, 100);
+};
+
+/**
+ * Restarts the tour guide
+ * This function is called from the UI when user wants to see the tour again
+ */
+export const restartTourGuide = () => {
+  if (typeof window.restartTour === 'function') {
+    window.restartTour();
+  } else {
+    console.warn('Tour guide restart function not available');
+    // Force restart by clearing localStorage
+    window.localStorage.removeItem('tourCompleted');
+    // Reload the page to restart the tour from the beginning
+    window.location.reload();
   }
 };

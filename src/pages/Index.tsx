@@ -6,8 +6,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
-import { useTheme, Theme } from "@/components/ThemeProvider";
+import { useTheme } from "@/components/ThemeProvider";
+import { restartTourGuide } from "@/utils/navigation";
 import SocialCard from "@/components/SocialCard";
 import ProjectCard from "@/components/ProjectCard";
 import SkillSection from "@/components/SkillSection";
@@ -19,7 +19,6 @@ const Index = () => {
   const [activeTab, setActiveTab] = useState<string>("home");
   const [accentColor, setAccentColor] = useState<string>("blue");
   const [fontSize, setFontSize] = useState<number>(100); // 100% is default
-  const [showWelcome, setShowWelcome] = useState(true);
   const { theme, setTheme } = useTheme();
 
   // Apply font size to root element
@@ -42,56 +41,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground pb-20 font-tajawal">
-      {/* Welcome Dialog */}
-      <Dialog open={showWelcome} onOpenChange={setShowWelcome}>
-        <DialogContent className="glass-card border border-border/40 bg-card/30 backdrop-blur-md">
-          <DialogHeader>
-            <DialogTitle className="text-2xl font-bold flex items-center gap-2">
-              <i className="bi bi-hand-thumbs-up"></i>
-              مرحباً بك في موقعي الشخصي
-            </DialogTitle>
-            <DialogDescription className="text-muted-foreground text-base mt-2">
-              استعرض مهاراتي ومشاريعي وتواصل معي بسهولة
-            </DialogDescription>
-          </DialogHeader>
-          
-          <div className="space-y-4 py-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="flex flex-col items-center gap-2 p-4 bg-primary/5 rounded-lg">
-                <i className="bi bi-code-slash text-2xl text-primary"></i>
-                <p className="text-sm font-medium text-center">استعرض مهاراتي التقنية ومستويات الخبرة</p>
-              </div>
-              <div className="flex flex-col items-center gap-2 p-4 bg-primary/5 rounded-lg">
-                <i className="bi bi-briefcase text-2xl text-primary"></i>
-                <p className="text-sm font-medium text-center">تصفح مشاريعي السابقة وأعمالي</p>
-              </div>
-              <div className="flex flex-col items-center gap-2 p-4 bg-primary/5 rounded-lg">
-                <i className="bi bi-envelope text-2xl text-primary"></i>
-                <p className="text-sm font-medium text-center">تواصل معي عبر وسائل التواصل المختلفة</p>
-              </div>
-              <div className="flex flex-col items-center gap-2 p-4 bg-primary/5 rounded-lg">
-                <i className="bi bi-gear text-2xl text-primary"></i>
-                <p className="text-sm font-medium text-center">خصص تجربتك بتغيير المظهر والألوان</p>
-              </div>
-            </div>
-          </div>
-          
-          <DialogFooter>
-            <Button 
-              onClick={() => {
-                setShowWelcome(false);
-                // Reset the tour to start again
-                window.localStorage.removeItem('tourCompleted');
-              }} 
-              className="w-full gap-2"
-            >
-              <i className="bi bi-rocket"></i>
-              استكشف الموقع مع دليل تفاعلي
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-
       {/* Tour Guide Component */}
       <TourGuide />
 
@@ -112,7 +61,7 @@ const Index = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <Card className="border border-border/40 bg-card/30 backdrop-blur-md hover:shadow-lg transition-all glass-card">
+              <Card className="border border-border/40 glass-card hover:shadow-lg transition-all duration-300">
                 <CardContent className="p-6">
                   <h2 className="text-2xl font-semibold mb-4 text-foreground flex items-center gap-2">
                     <i className="bi bi-house-door"></i>
@@ -124,7 +73,7 @@ const Index = () => {
                     في مشاريعي.
                   </p>
                   
-                  <div className="mt-6 p-4 bg-primary/5 backdrop-blur-sm rounded-lg glass-card border border-primary/10">
+                  <div className="mt-6 p-4 bg-primary/5 backdrop-blur-sm rounded-lg border border-primary/10">
                     <h3 className="text-lg font-medium mb-3 text-foreground flex items-center gap-2">
                       <i className="bi bi-info-circle"></i>
                       كيفية استخدام الموقع:
@@ -151,11 +100,11 @@ const Index = () => {
                     <div className="flex justify-center mt-6">
                       <Button
                         variant="outline"
-                        className="gap-2"
-                        onClick={() => setShowWelcome(true)}
+                        className="gap-2 hover-lift glass-card"
+                        onClick={() => restartTourGuide()}
                       >
-                        <i className="bi bi-question-circle"></i>
-                        إعادة عرض دليل الترحيب
+                        <i className="bi bi-info-circle"></i>
+                        عرض الجولة التعريفية
                       </Button>
                     </div>
                   </div>
@@ -257,7 +206,7 @@ const Index = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <Card className="border border-border/40 bg-card/30 backdrop-blur-md hover:shadow-lg transition-all glass-card">
+              <Card className="border border-border/40 glass-card hover:shadow-lg transition-all duration-300">
                 <CardContent className="p-6">
                   <h2 className="text-2xl font-semibold mb-6 text-foreground flex items-center gap-2">
                     <i className="bi bi-gear"></i>
@@ -273,7 +222,7 @@ const Index = () => {
                       <div className="flex items-center gap-4 flex-wrap">
                         <Button 
                           variant={theme === "light" ? "default" : "outline"} 
-                          className="flex gap-2 btn-hover-effect"
+                          className="flex gap-2 hover-lift"
                           onClick={() => setTheme("light")}
                         >
                           <i className="bi bi-sun"></i>
@@ -281,7 +230,7 @@ const Index = () => {
                         </Button>
                         <Button 
                           variant={theme === "dark" ? "default" : "outline"} 
-                          className="flex gap-2 btn-hover-effect"
+                          className="flex gap-2 hover-lift"
                           onClick={() => setTheme("dark")}
                         >
                           <i className="bi bi-moon"></i>
@@ -289,7 +238,7 @@ const Index = () => {
                         </Button>
                         <Button 
                           variant={theme === "system" ? "default" : "outline"} 
-                          className="flex gap-2 btn-hover-effect"
+                          className="flex gap-2 hover-lift"
                           onClick={() => setTheme("system")}
                         >
                           <i className="bi bi-display"></i>
@@ -326,6 +275,17 @@ const Index = () => {
                           {fontSize}%
                         </span>
                       </div>
+                    </div>
+                    
+                    <div className="pt-4 border-t border-border/40">
+                      <Button 
+                        variant="outline" 
+                        className="w-full gap-2 hover-lift"
+                        onClick={() => restartTourGuide()}
+                      >
+                        <i className="bi bi-arrow-repeat"></i>
+                        إعادة تشغيل الجولة التعريفية
+                      </Button>
                     </div>
                   </div>
                 </CardContent>

@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { setActiveTab } from '@/utils/navigation';
+import { setActiveTab, scrollToElement } from '@/utils/navigation';
 
 interface TourStep {
   id: string;
@@ -123,14 +123,24 @@ const Tooltip = ({ step, onNext, onFinish, isLastStep, targetRect }: TooltipProp
   
   return (
     <motion.div 
-      className="tour-tooltip"
+      className="tour-tooltip fixed z-50 w-72 shadow-lg rounded-md bg-popover text-popover-foreground p-4 border border-border/50 backdrop-blur-sm"
       style={tooltipStyle}
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9 }}
       transition={{ duration: 0.2 }}
     >
-      <div className="tour-arrow" style={arrowStyle}></div>
+      <div 
+        className="tour-arrow absolute w-0 h-0 border-solid" 
+        style={{
+          ...arrowStyle,
+          borderWidth: ARROW_SIZE + 'px',
+          borderColor: (step.placement === 'top' ? 'transparent transparent var(--border-color) transparent' :
+                       step.placement === 'right' ? 'transparent var(--border-color) transparent transparent' :
+                       step.placement === 'bottom' ? 'var(--border-color) transparent transparent transparent' :
+                       'transparent transparent transparent var(--border-color)')
+        }}
+      ></div>
       <h3 className="text-lg font-bold mb-2">{step.title}</h3>
       <p className="text-sm mb-4">{step.content}</p>
       <div className="flex justify-between">
@@ -158,6 +168,7 @@ const TourGuide = () => {
   const [targetRect, setTargetRect] = useState<DOMRect | null>(null);
   const portalRef = useRef<HTMLDivElement | null>(null);
   
+  // Start the tour automatically when component mounts
   useEffect(() => {
     // Create portal container if it doesn't exist
     if (!portalRef.current) {
@@ -173,7 +184,7 @@ const TourGuide = () => {
       // Start tour after a slight delay
       const timer = setTimeout(() => {
         setIsActive(true);
-      }, 1500);
+      }, 800);
       
       return () => clearTimeout(timer);
     }
@@ -195,20 +206,23 @@ const TourGuide = () => {
       setActiveTab(currentStep.tab);
     }
     
-    // Find the target element
-    const targetElement = document.querySelector(currentStep.selector);
-    if (targetElement) {
-      // Add highlight to the target element
-      targetElement.classList.add('tour-highlight');
-      
-      // Get position
-      setTargetRect(targetElement.getBoundingClientRect());
-      
-      // Scroll into view if needed
-      targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
+    // Find the target element with a small delay to ensure tab switching completes
+    const targetTimer = setTimeout(() => {
+      const targetElement = document.querySelector(currentStep.selector);
+      if (targetElement) {
+        // Add highlight to the target element
+        targetElement.classList.add('tour-highlight');
+        
+        // Get position
+        setTargetRect(targetElement.getBoundingClientRect());
+        
+        // Scroll into view if needed
+        scrollToElement(currentStep.selector);
+      }
+    }, 300);
     
     return () => {
+      clearTimeout(targetTimer);
       // Clean up highlight
       const targetElement = document.querySelector(currentStep.selector);
       if (targetElement) {
@@ -227,6 +241,21 @@ const TourGuide = () => {
     setIsActive(false);
     window.localStorage.setItem('tourCompleted', 'true');
   };
+  
+  // Function to restart the tour - can be called from anywhere
+  const restartTour = () => {
+    setCurrentStepIndex(0);
+    setIsActive(true);
+    window.localStorage.removeItem('tourCompleted');
+  };
+  
+  // Make restart function available globally
+  useEffect(() => {
+    window.restartTour = restartTour;
+    return () => {
+      delete window.restartTour;
+    };
+  }, []);
   
   if (!isActive || !portalRef.current) return null;
   

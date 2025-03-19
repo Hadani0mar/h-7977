@@ -21,6 +21,29 @@ interface SkillCardProps {
 }
 
 const SkillCard = ({ skill, index }: SkillCardProps) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  
+  // Add spotlight effect on mouse move
+  useEffect(() => {
+    const card = cardRef.current;
+    if (!card) return;
+    
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      card.style.setProperty('--x', `${x}px`);
+      card.style.setProperty('--y', `${y}px`);
+    };
+    
+    card.addEventListener('mousemove', handleMouseMove);
+    
+    return () => {
+      card.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+  
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -30,8 +53,12 @@ const SkillCard = ({ skill, index }: SkillCardProps) => {
       className="h-full"
     >
       <Card 
-        className="border border-border/40 backdrop-blur-lg hover:shadow-xl transition-all hover:translate-y-[-5px] duration-300 overflow-hidden skill-card group h-full relative"
-        style={{ background: `${skill.gradient}20` }}
+        ref={cardRef}
+        className="h-full relative glass-card backdrop-blur-md border border-white/10 dark:border-white/5 shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 skill-card"
+        style={{ 
+          background: `${skill.gradient}10`,
+          boxShadow: `0 4px 20px -5px ${skill.gradient.split(')')[0]}25)`
+        }}
       >
         <CardContent className="p-5 relative z-10 h-full flex flex-col">
           <div className="flex items-start justify-between mb-4">
@@ -45,10 +72,11 @@ const SkillCard = ({ skill, index }: SkillCardProps) => {
               <span className="text-xs font-medium text-foreground/70">{skill.category}</span>
             </div>
             <div 
-              className="text-3xl p-3 rounded-lg glass-icon"
+              className="text-3xl p-3 rounded-lg icon-spotlight relative overflow-hidden"
               style={{ color: skill.iconColor }}
             >
               <i className={skill.icon}></i>
+              <div className="absolute inset-0 icon-reflection"></div>
             </div>
           </div>
           
@@ -59,7 +87,7 @@ const SkillCard = ({ skill, index }: SkillCardProps) => {
           )}
           
           <div className="skill-spotlight absolute inset-0 pointer-events-none z-0"></div>
-          <div className="absolute top-0 right-0 w-24 h-24 blur-3xl rounded-full opacity-20" style={{ background: skill.gradient }}></div>
+          <div className="absolute top-0 right-0 w-24 h-24 blur-3xl rounded-full opacity-10" style={{ background: skill.gradient }}></div>
         </CardContent>
       </Card>
     </motion.div>
@@ -224,14 +252,14 @@ const SkillSection = () => {
   }, [showAllSkills]);
 
   return (
-    <div ref={containerRef} className="space-y-6 relative overflow-hidden space-background pb-8">
-      <div className="stars-container">
+    <div ref={containerRef} className="space-y-6 relative overflow-hidden pb-8">
+      <div className="stars-container absolute inset-0 -z-10">
         <div className="stars"></div>
         <div className="stars2"></div>
         <div className="stars3"></div>
       </div>
       
-      <Card className="border border-border/40 bg-card/5 backdrop-blur-md hover:shadow-lg transition-all relative z-10">
+      <Card className="border border-border/40 glass-card backdrop-blur-md shadow-lg hover:shadow-xl transition-all duration-300 relative z-10">
         <CardContent className="p-6">
           <motion.div
             initial={{ opacity: 0, y: -10 }}
@@ -264,7 +292,7 @@ const SkillSection = () => {
           >
             <Button 
               variant="outline" 
-              className="gap-2 glass-card" 
+              className="gap-2 glass-card hover-lift" 
               onClick={() => setShowAllSkills(!showAllSkills)}
             >
               {showAllSkills ? "عرض أقل" : "عرض المزيد من المهارات"}
