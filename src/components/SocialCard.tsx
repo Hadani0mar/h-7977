@@ -1,7 +1,6 @@
 
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 
 interface SocialCardProps {
   platform: string;
@@ -28,20 +27,19 @@ const SocialCard = ({ platform, username, link, icon, verified = false }: Social
       >
         <Card className="border border-border/40 bg-card/30 backdrop-blur-md hover:shadow-lg transition-all duration-300 overflow-hidden relative h-full">
           <CardContent className="p-6 flex items-center gap-4 relative z-10">
-            <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-all flex items-center justify-center">
+            <div className="p-3 rounded-full relative overflow-hidden icon-spotlight">
               <i className={getIconClass(icon)} style={{ fontSize: "1.5rem" }}></i>
             </div>
             <div className="flex flex-col">
               <div className="flex items-center gap-1">
                 <h3 className="font-medium text-foreground">{platform}</h3>
                 {verified && (
-                  <motion.div 
+                  <div 
                     className="text-primary verification-badge" 
                     title="حساب موثق"
-                    whileHover={{ rotate: 10 }}
                   >
                     <i className="bi bi-patch-check-fill"></i>
-                  </motion.div>
+                  </div>
                 )}
               </div>
               <p className="text-sm text-muted-foreground font-medium">{username}</p>

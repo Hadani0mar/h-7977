@@ -13,6 +13,7 @@ import ProjectCard from "@/components/ProjectCard";
 import SkillSection from "@/components/SkillSection";
 import ColorSelector from "@/components/ColorSelector";
 import Header from "@/components/Header";
+import TourGuide from "@/components/TourGuide";
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState<string>("home");
@@ -77,15 +78,22 @@ const Index = () => {
           
           <DialogFooter>
             <Button 
-              onClick={() => setShowWelcome(false)} 
+              onClick={() => {
+                setShowWelcome(false);
+                // Reset the tour to start again
+                window.localStorage.removeItem('tourCompleted');
+              }} 
               className="w-full gap-2"
             >
               <i className="bi bi-rocket"></i>
-              استكشف الموقع
+              استكشف الموقع مع دليل تفاعلي
             </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      {/* Tour Guide Component */}
+      <TourGuide />
 
       {/* Header */}
       <Header />
@@ -329,27 +337,27 @@ const Index = () => {
           <div className="fixed bottom-0 left-0 right-0 bg-background/80 backdrop-blur-lg border-t border-border z-10">
             <div className="container mx-auto px-4">
               <TabsList className="w-full h-16">
-                <TabsTrigger value="home" className="tab-trigger group">
+                <TabsTrigger value="home" className="tab-trigger group" data-tour="home-tab">
                   <i className="bi bi-house-door text-xl mb-1"></i>
                   <span className="text-xs">الرئيسية</span>
                   <span className="tab-spotlight"></span>
                 </TabsTrigger>
-                <TabsTrigger value="skills" className="tab-trigger group">
+                <TabsTrigger value="skills" className="tab-trigger group" data-tour="skills-tab">
                   <i className="bi bi-code-slash text-xl mb-1"></i>
                   <span className="text-xs">المهارات</span>
                   <span className="tab-spotlight"></span>
                 </TabsTrigger>
-                <TabsTrigger value="projects" className="tab-trigger group">
+                <TabsTrigger value="projects" className="tab-trigger group" data-tour="projects-tab">
                   <i className="bi bi-briefcase text-xl mb-1"></i>
                   <span className="text-xs">المشاريع</span>
                   <span className="tab-spotlight"></span>
                 </TabsTrigger>
-                <TabsTrigger value="contact" className="tab-trigger group">
+                <TabsTrigger value="contact" className="tab-trigger group" data-tour="contact-tab">
                   <i className="bi bi-envelope text-xl mb-1"></i>
                   <span className="text-xs">التواصل</span>
                   <span className="tab-spotlight"></span>
                 </TabsTrigger>
-                <TabsTrigger value="settings" className="tab-trigger group">
+                <TabsTrigger value="settings" className="tab-trigger group" data-tour="settings-tab">
                   <i className="bi bi-gear text-xl mb-1"></i>
                   <span className="text-xs">الإعدادات</span>
                   <span className="tab-spotlight"></span>

@@ -57,6 +57,43 @@
   opacity: 1;
 }
 
+/* Light reflection effect for icons */
+.icon-spotlight {
+  position: relative;
+  overflow: hidden;
+}
+
+.icon-spotlight::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+  opacity: 0;
+  transform: rotate(30deg);
+  transition: opacity 0.3s ease, transform 0.5s ease-in-out;
+}
+
+.icon-spotlight:hover::before {
+  opacity: 0.6;
+  transform: rotate(30deg) translateY(-30%);
+}
+
+/* Glass icon effect */
+.glass-icon {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.dark .glass-icon {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
 /* Tab spotlight effect */
 .tab-trigger {
   position: relative;
@@ -152,26 +189,6 @@
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Badge animation */
-@keyframes badgePulse {
-  0% {
-    transform: scale(1);
-    opacity: 0.8;
-  }
-  50% {
-    transform: scale(1.1);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0.8;
-  }
-}
-
-.verification-badge {
-  animation: badgePulse 2s infinite ease-in-out;
-}
-
 /* Hover effects for buttons */
 .btn-hover-effect {
   position: relative;
@@ -203,12 +220,6 @@
 
 [data-tooltip]:hover::after {
   animation: tooltipFade 0.3s ease forwards;
-}
-
-/* Progress bar animation */
-@keyframes progressFill {
-  0% { width: 0; }
-  100% { width: var(--percent, 0%); }
 }
 
 /* Enhanced spotlight effect */
@@ -274,4 +285,43 @@
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* Tour tooltip styles */
+.tour-tooltip {
+  position: absolute;
+  background: rgba(var(--primary-rgb), 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(var(--primary-rgb), 0.2);
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  max-width: 300px;
+  animation: tooltipFade 0.3s ease forwards;
+}
+
+.tour-arrow {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: rgba(var(--primary-rgb), 0.1);
+  backdrop-filter: blur(10px);
+  transform: rotate(45deg);
+  border: 1px solid rgba(var(--primary-rgb), 0.2);
+}
+
+/* Tour button styles */
+.tour-button {
+  padding: 8px 16px;
+  background: rgba(var(--primary-rgb), 0.2);
+  border: 1px solid rgba(var(--primary-rgb), 0.3);
+  border-radius: 4px;
+  color: hsl(var(--foreground));
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.tour-button:hover {
+  background: rgba(var(--primary-rgb), 0.3);
 }

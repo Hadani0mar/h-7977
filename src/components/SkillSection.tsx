@@ -3,54 +3,63 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 
-interface SkillCardProps {
+// Define a comprehensive skill interface
+interface Skill {
   name: string;
-  level: number;
   category: string;
   icon: string;
+  gradient: string;
+  textColor: string;
+  iconColor: string;
+  description?: string;
+}
+
+interface SkillCardProps {
+  skill: Skill;
   index: number;
 }
 
-const SkillCard = ({ name, level, category, icon, index }: SkillCardProps) => {
+const SkillCard = ({ skill, index }: SkillCardProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.3, delay: index * 0.05 }}
+      className="h-full"
     >
-      <Card className="border border-border/40 bg-card/30 backdrop-blur-md hover:shadow-lg transition-all hover:translate-y-[-5px] duration-300 overflow-hidden skill-card group h-full">
-        <CardContent className="p-4 relative z-10">
-          <div className="flex flex-col gap-2">
-            <div className="flex items-center justify-between mb-2">
-              <div className="flex items-center gap-2">
-                <div className="text-primary/90 text-xl">
-                  <i className={icon}></i>
-                </div>
-                <h4 className="text-base font-bold text-foreground">{name}</h4>
-              </div>
-              <Badge variant="outline" className="text-xs font-medium">
-                {category}
-              </Badge>
+      <Card 
+        className="border border-border/40 backdrop-blur-lg hover:shadow-xl transition-all hover:translate-y-[-5px] duration-300 overflow-hidden skill-card group h-full relative"
+        style={{ background: `${skill.gradient}20` }}
+      >
+        <CardContent className="p-5 relative z-10 h-full flex flex-col">
+          <div className="flex items-start justify-between mb-4">
+            <div className="flex flex-col gap-1">
+              <h4 
+                className="text-lg font-bold" 
+                style={{ color: skill.textColor }}
+              >
+                {skill.name}
+              </h4>
+              <span className="text-xs font-medium text-foreground/70">{skill.category}</span>
             </div>
-            
-            <div className="h-2 w-full bg-muted rounded-full overflow-hidden">
-              <motion.div 
-                className="h-full bg-primary rounded-full" 
-                initial={{ width: 0 }}
-                animate={{ width: `${level}%` }}
-                transition={{ duration: 1, ease: "easeOut", delay: 0.2 + index * 0.1 }}
-              />
-            </div>
-            
-            <div className="flex items-center justify-between">
-              <span className="text-xs text-muted-foreground font-medium">مستوى الخبرة</span>
-              <span className="text-xs font-medium text-primary">{level}%</span>
+            <div 
+              className="text-3xl p-3 rounded-lg glass-icon"
+              style={{ color: skill.iconColor }}
+            >
+              <i className={skill.icon}></i>
             </div>
           </div>
+          
+          {skill.description && (
+            <p className="text-sm text-muted-foreground mt-2 flex-grow">
+              {skill.description}
+            </p>
+          )}
+          
           <div className="skill-spotlight absolute inset-0 pointer-events-none z-0"></div>
+          <div className="absolute top-0 right-0 w-24 h-24 blur-3xl rounded-full opacity-20" style={{ background: skill.gradient }}></div>
         </CardContent>
       </Card>
     </motion.div>
@@ -61,27 +70,147 @@ const SkillSection = () => {
   const [showAllSkills, setShowAllSkills] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   
-  const allSkills = [
+  const allSkills: Skill[] = [
     // Frontend Skills
-    { name: "HTML", level: 95, category: "لغات الواجهة", icon: "bi bi-filetype-html" },
-    { name: "CSS", level: 90, category: "لغات الواجهة", icon: "bi bi-filetype-css" },
-    { name: "JavaScript", level: 85, category: "لغات البرمجة", icon: "bi bi-filetype-js" },
-    { name: "TypeScript", level: 80, category: "لغات البرمجة", icon: "bi bi-filetype-tsx" },
-    { name: "React", level: 85, category: "أطر العمل", icon: "bi bi-react" },
+    { 
+      name: "HTML", 
+      category: "لغات الواجهة", 
+      icon: "bi bi-filetype-html", 
+      gradient: "linear-gradient(135deg, #E44D26, #F16529)",
+      textColor: "#E44D26",
+      iconColor: "#E44D26",
+      description: "لغة ترميز المستندات الرئيسية لصفحات الويب"
+    },
+    { 
+      name: "CSS", 
+      category: "لغات الواجهة", 
+      icon: "bi bi-filetype-css", 
+      gradient: "linear-gradient(135deg, #264DE4, #2965F1)",
+      textColor: "#264DE4",
+      iconColor: "#264DE4",
+      description: "لغة تنسيق وتصميم صفحات الويب"
+    },
+    { 
+      name: "JavaScript", 
+      category: "لغات البرمجة", 
+      icon: "bi bi-filetype-js", 
+      gradient: "linear-gradient(135deg, #F0DB4F, #F7DF1E)",
+      textColor: "#c8b134",
+      iconColor: "#F0DB4F",
+      description: "لغة البرمجة الأساسية للويب والتفاعلات"
+    },
+    { 
+      name: "TypeScript", 
+      category: "لغات البرمجة", 
+      icon: "bi bi-filetype-tsx", 
+      gradient: "linear-gradient(135deg, #007ACC, #3178C6)",
+      textColor: "#007ACC",
+      iconColor: "#007ACC",
+      description: "لغة جافاسكريبت قوية بإضافة الأنواع"
+    },
+    { 
+      name: "React", 
+      category: "أطر العمل", 
+      icon: "bi bi-react", 
+      gradient: "linear-gradient(135deg, #61DAFB, #00B2FF)",
+      textColor: "#61DAFB",
+      iconColor: "#61DAFB",
+      description: "مكتبة JavaScript لبناء واجهات المستخدم"
+    },
     
     // Frameworks & Libraries
-    { name: "Next.js", level: 75, category: "أطر العمل", icon: "bi bi-ladder" },
-    { name: "Tailwind CSS", level: 90, category: "أطر العمل", icon: "bi bi-palette" },
-    { name: "Redux", level: 70, category: "أطر العمل", icon: "bi bi-diagram-3" },
-    { name: "Shadcn/UI", level: 80, category: "مكتبات", icon: "bi bi-box" },
-    { name: "Material UI", level: 75, category: "مكتبات", icon: "bi bi-grid" },
+    { 
+      name: "Next.js", 
+      category: "أطر العمل", 
+      icon: "bi bi-ladder", 
+      gradient: "linear-gradient(135deg, #000000, #444444)",
+      textColor: "#ffffff",
+      iconColor: "#ffffff",
+      description: "إطار عمل React للتطبيقات الشاملة"
+    },
+    { 
+      name: "Tailwind CSS", 
+      category: "أطر العمل", 
+      icon: "bi bi-palette", 
+      gradient: "linear-gradient(135deg, #38BDF8, #0EA5E9)",
+      textColor: "#38BDF8",
+      iconColor: "#38BDF8",
+      description: "إطار CSS سريع لتصميم واجهات مخصصة"
+    },
+    { 
+      name: "Redux", 
+      category: "أطر العمل", 
+      icon: "bi bi-diagram-3", 
+      gradient: "linear-gradient(135deg, #764ABC, #9775d9)",
+      textColor: "#764ABC",
+      iconColor: "#764ABC",
+      description: "مكتبة لإدارة حالة التطبيقات"
+    },
+    { 
+      name: "Shadcn/UI", 
+      category: "مكتبات", 
+      icon: "bi bi-box", 
+      gradient: "linear-gradient(135deg, #000000, #333333)",
+      textColor: "#ffffff",
+      iconColor: "#ffffff",
+      description: "مكونات UI قابلة للتخصيص عالية الجودة"
+    },
+    { 
+      name: "Material UI", 
+      category: "مكتبات", 
+      icon: "bi bi-grid", 
+      gradient: "linear-gradient(135deg, #0081CB, #00B0FF)",
+      textColor: "#0081CB",
+      iconColor: "#0081CB",
+      description: "مكتبة مكونات React تتبع تصميم Material"
+    },
     
     // Tools
-    { name: "Git", level: 85, category: "أدوات", icon: "bi bi-git" },
-    { name: "Figma", level: 70, category: "تصميم", icon: "bi bi-vector-pen" },
-    { name: "VS Code", level: 90, category: "أدوات", icon: "bi bi-code-square" },
-    { name: "Webpack", level: 65, category: "أدوات", icon: "bi bi-box-seam" },
-    { name: "npm/yarn", level: 85, category: "أدوات", icon: "bi bi-terminal" },
+    { 
+      name: "Git", 
+      category: "أدوات", 
+      icon: "bi bi-git", 
+      gradient: "linear-gradient(135deg, #F05032, #F15235)",
+      textColor: "#F05032",
+      iconColor: "#F05032",
+      description: "نظام التحكم بالإصدارات للمشاريع"
+    },
+    { 
+      name: "Figma", 
+      category: "تصميم", 
+      icon: "bi bi-vector-pen", 
+      gradient: "linear-gradient(135deg, #A259FF, #F24E1E)",
+      textColor: "#A259FF",
+      iconColor: "#F24E1E",
+      description: "أداة تصميم واجهات المستخدم التعاونية"
+    },
+    { 
+      name: "VS Code", 
+      category: "أدوات", 
+      icon: "bi bi-code-square", 
+      gradient: "linear-gradient(135deg, #0078D7, #22A7F2)",
+      textColor: "#0078D7",
+      iconColor: "#0078D7",
+      description: "محرر أكواد متكامل لتطوير البرمجيات"
+    },
+    { 
+      name: "Webpack", 
+      category: "أدوات", 
+      icon: "bi bi-box-seam", 
+      gradient: "linear-gradient(135deg, #8DD6F9, #1C78C0)",
+      textColor: "#1C78C0",
+      iconColor: "#8DD6F9",
+      description: "أداة لحزم وإدارة الأصول للمشاريع"
+    },
+    { 
+      name: "npm/yarn", 
+      category: "أدوات", 
+      icon: "bi bi-terminal", 
+      gradient: "linear-gradient(135deg, #CB3837, #E43526)",
+      textColor: "#CB3837",
+      iconColor: "#CB3837",
+      description: "أدوات إدارة حزم JavaScript"
+    },
   ];
   
   // Show only first 6 skills initially
@@ -120,10 +249,7 @@ const SkillSection = () => {
               {visibleSkills.map((skill, index) => (
                 <SkillCard 
                   key={skill.name}
-                  name={skill.name} 
-                  level={skill.level} 
-                  category={skill.category}
-                  icon={skill.icon}
+                  skill={skill}
                   index={index}
                 />
               ))}

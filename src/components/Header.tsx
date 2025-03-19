@@ -17,14 +17,12 @@ const Header = () => {
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground bg-clip-text bg-gradient-to-r from-primary to-primary/70">
             Bn0mar
           </h1>
-          <motion.div 
+          <div 
             className="text-primary verification-badge" 
             title="حساب موثق"
-            whileHover={{ scale: 1.2 }}
-            whileTap={{ scale: 0.9 }}
           >
             <i className="bi bi-patch-check-fill text-2xl"></i>
-          </motion.div>
+          </div>
         </div>
         <p className="text-lg text-muted-foreground font-medium flex items-center justify-center gap-2">
           <i className="bi bi-code-slash"></i>
