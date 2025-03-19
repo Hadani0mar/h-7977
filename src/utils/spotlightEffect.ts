@@ -30,4 +30,18 @@ export const initSpotlightEffects = () => {
       (trigger as HTMLElement).style.setProperty('--tab-y', `${y}%`);
     });
   });
+  
+  // For social cards
+  const socialCards = document.querySelectorAll('.social-card');
+  
+  socialCards.forEach(card => {
+    card.addEventListener('mousemove', (e: MouseEvent) => {
+      const rect = (card as HTMLElement).getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      
+      (card as HTMLElement).style.setProperty('--social-x', `${x}%`);
+      (card as HTMLElement).style.setProperty('--social-y', `${y}%`);
+    });
+  });
 };

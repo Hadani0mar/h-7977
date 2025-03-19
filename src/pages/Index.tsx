@@ -5,12 +5,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
-import { CheckCircle, Moon, Sun, Monitor, Home, Code, Briefcase, Mail, Settings } from "lucide-react";
 import { useTheme, Theme } from "@/components/ThemeProvider";
 import SocialCard from "@/components/SocialCard";
 import ProjectCard from "@/components/ProjectCard";
 import SkillSection from "@/components/SkillSection";
 import ColorSelector from "@/components/ColorSelector";
+import Header from "@/components/Header";
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState<string>("home");
@@ -39,15 +39,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground pb-20 font-tajawal">
       {/* Header */}
-      <header className="py-6 px-4 md:px-6 flex justify-center items-center">
-        <div className="text-center">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight flex items-center justify-center gap-2 text-foreground">
-            Bn0mar
-            <CheckCircle className="h-6 w-6 text-primary fill-primary" />
-          </h1>
-          <p className="mt-2 text-muted-foreground font-medium">Frontend Developer & UI Designer</p>
-        </div>
-      </header>
+      <Header />
 
       {/* Main Content */}
       <main className="container mx-auto px-4 max-w-4xl">
@@ -60,19 +52,37 @@ const Index = () => {
           <TabsContent value="home" className="animate-fade-in space-y-6">
             <Card className="border border-border/40 bg-card/30 backdrop-blur-md hover:shadow-lg transition-all glass-card">
               <CardContent className="p-6">
-                <h2 className="text-2xl font-semibold mb-4 text-foreground">مرحباً بك في ملفي الشخصي</h2>
-                <p className="text-muted-foreground font-medium">
+                <h2 className="text-2xl font-semibold mb-4 text-foreground flex items-center gap-2">
+                  <i className="bi bi-house-door"></i>
+                  مرحباً بك في ملفي الشخصي
+                </h2>
+                <p className="text-muted-foreground text-base">
                   أنا مطور واجهات أمامية متخصص في إنشاء تجارب مستخدم سلسة وجذابة. أعمل على تطوير تطبيقات الويب
                   باستخدام أحدث التقنيات والأدوات.
                 </p>
                 
                 <div className="mt-6 p-4 bg-primary/5 backdrop-blur-sm rounded-lg glass-card">
-                  <h3 className="text-lg font-medium mb-2 text-foreground">كيفية استخدام الموقع:</h3>
-                  <ul className="list-disc list-inside space-y-2 text-muted-foreground font-medium">
-                    <li>استعرض مهاراتي التقنية في قسم <strong>المهارات</strong></li>
-                    <li>تصفح مشاريعي السابقة في قسم <strong>المشاريع</strong></li>
-                    <li>تواصل معي من خلال وسائل التواصل في قسم <strong>التواصل</strong></li>
-                    <li>خصص مظهر الموقع في قسم <strong>الإعدادات</strong></li>
+                  <h3 className="text-lg font-medium mb-2 text-foreground flex items-center gap-2">
+                    <i className="bi bi-info-circle"></i>
+                    كيفية استخدام الموقع:
+                  </h3>
+                  <ul className="list-none space-y-2 text-muted-foreground text-base">
+                    <li className="flex items-center gap-2">
+                      <i className="bi bi-check-circle-fill text-primary"></i>
+                      استعرض مهاراتي التقنية في قسم <strong>المهارات</strong>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <i className="bi bi-check-circle-fill text-primary"></i>
+                      تصفح مشاريعي السابقة في قسم <strong>المشاريع</strong>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <i className="bi bi-check-circle-fill text-primary"></i>
+                      تواصل معي من خلال وسائل التواصل في قسم <strong>التواصل</strong>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <i className="bi bi-check-circle-fill text-primary"></i>
+                      خصص مظهر الموقع في قسم <strong>الإعدادات</strong>
+                    </li>
                   </ul>
                 </div>
               </CardContent>
@@ -87,13 +97,13 @@ const Index = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <ProjectCard 
                 title="مشروع تطبيق ويب" 
-                description="سيتم إضافة الوصف لاحقاً" 
-                link="" 
+                description="تطبيق ويب متكامل مبني بتقنية React وTailwind CSS، يتميز بواجهة مستخدم جذابة وسهلة الاستخدام." 
+                link="https://example.com/project1" 
               />
               <ProjectCard 
                 title="موقع تفاعلي" 
-                description="سيتم إضافة الوصف لاحقاً" 
-                link="" 
+                description="موقع تفاعلي متجاوب مع جميع أحجام الشاشات، يتضمن تأثيرات حركية متقدمة وواجهة مستخدم حديثة." 
+                link="https://example.com/project2" 
               />
             </div>
           </TabsContent>
@@ -104,25 +114,29 @@ const Index = () => {
                 platform="TikTok" 
                 username="@m0usa_0mar" 
                 link="https://www.tiktok.com/@m0usa_0mar" 
-                icon="tiktok" 
+                icon="tiktok"
+                verified={true}
               />
               <SocialCard 
                 platform="Facebook" 
                 username="mousa.0mar" 
                 link="https://www.facebook.com/mousa.0mar" 
-                icon="facebook" 
+                icon="facebook"
+                verified={true}
               />
               <SocialCard 
                 platform="Instagram" 
                 username="mousa_0mar" 
                 link="https://www.instagram.com/mousa_0mar" 
-                icon="instagram" 
+                icon="instagram"
+                verified={true}
               />
               <SocialCard 
                 platform="GitHub" 
                 username="Hadani0mar" 
                 link="https://github.com/Hadani0mar" 
-                icon="github" 
+                icon="github"
+                verified={true}
               />
               <SocialCard 
                 platform="Email" 
@@ -136,46 +150,58 @@ const Index = () => {
           <TabsContent value="settings" className="animate-fade-in space-y-6">
             <Card className="border border-border/40 bg-card/30 backdrop-blur-md hover:shadow-lg transition-all glass-card">
               <CardContent className="p-6">
-                <h2 className="text-2xl font-semibold mb-6 text-foreground">الإعدادات</h2>
+                <h2 className="text-2xl font-semibold mb-6 text-foreground flex items-center gap-2">
+                  <i className="bi bi-gear"></i>
+                  الإعدادات
+                </h2>
                 
                 <div className="space-y-8">
                   <div className="space-y-4">
-                    <h3 className="text-lg font-medium text-foreground">المظهر</h3>
-                    <div className="flex items-center gap-4">
+                    <h3 className="text-lg font-medium text-foreground flex items-center gap-2">
+                      <i className="bi bi-palette"></i>
+                      المظهر
+                    </h3>
+                    <div className="flex items-center gap-4 flex-wrap">
                       <Button 
                         variant={theme === "light" ? "default" : "outline"} 
-                        className="flex gap-2"
+                        className="flex gap-2 btn-hover-effect"
                         onClick={() => setTheme("light")}
                       >
-                        <Sun size={16} />
+                        <i className="bi bi-sun"></i>
                         فاتح
                       </Button>
                       <Button 
                         variant={theme === "dark" ? "default" : "outline"} 
-                        className="flex gap-2"
+                        className="flex gap-2 btn-hover-effect"
                         onClick={() => setTheme("dark")}
                       >
-                        <Moon size={16} />
+                        <i className="bi bi-moon"></i>
                         داكن
                       </Button>
                       <Button 
                         variant={theme === "system" ? "default" : "outline"} 
-                        className="flex gap-2"
+                        className="flex gap-2 btn-hover-effect"
                         onClick={() => setTheme("system")}
                       >
-                        <Monitor size={16} />
+                        <i className="bi bi-display"></i>
                         النظام
                       </Button>
                     </div>
                   </div>
                   
                   <div className="space-y-4">
-                    <h3 className="text-lg font-medium text-foreground">ألوان الواجهة</h3>
+                    <h3 className="text-lg font-medium text-foreground flex items-center gap-2">
+                      <i className="bi bi-droplet"></i>
+                      ألوان الواجهة
+                    </h3>
                     <ColorSelector onChange={(color) => setAccentColor(color)} />
                   </div>
 
                   <div className="space-y-4">
-                    <h3 className="text-lg font-medium text-foreground">حجم الخط</h3>
+                    <h3 className="text-lg font-medium text-foreground flex items-center gap-2">
+                      <i className="bi bi-type"></i>
+                      حجم الخط
+                    </h3>
                     <div className="flex items-center gap-4">
                       <span className="text-sm font-medium">صغير</span>
                       <Slider 
@@ -202,27 +228,27 @@ const Index = () => {
             <div className="container mx-auto px-4">
               <TabsList className="w-full h-16">
                 <TabsTrigger value="home" className="tab-trigger group">
-                  <Home className="w-5 h-5 mb-1" />
+                  <i className="bi bi-house-door text-xl mb-1"></i>
                   <span className="text-xs">الرئيسية</span>
                   <span className="tab-spotlight"></span>
                 </TabsTrigger>
                 <TabsTrigger value="skills" className="tab-trigger group">
-                  <Code className="w-5 h-5 mb-1" />
+                  <i className="bi bi-code-slash text-xl mb-1"></i>
                   <span className="text-xs">المهارات</span>
                   <span className="tab-spotlight"></span>
                 </TabsTrigger>
                 <TabsTrigger value="projects" className="tab-trigger group">
-                  <Briefcase className="w-5 h-5 mb-1" />
+                  <i className="bi bi-briefcase text-xl mb-1"></i>
                   <span className="text-xs">المشاريع</span>
                   <span className="tab-spotlight"></span>
                 </TabsTrigger>
                 <TabsTrigger value="contact" className="tab-trigger group">
-                  <Mail className="w-5 h-5 mb-1" />
+                  <i className="bi bi-envelope text-xl mb-1"></i>
                   <span className="text-xs">التواصل</span>
                   <span className="tab-spotlight"></span>
                 </TabsTrigger>
                 <TabsTrigger value="settings" className="tab-trigger group">
-                  <Settings className="w-5 h-5 mb-1" />
+                  <i className="bi bi-gear text-xl mb-1"></i>
                   <span className="text-xs">الإعدادات</span>
                   <span className="tab-spotlight"></span>
                 </TabsTrigger>

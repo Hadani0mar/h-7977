@@ -3,8 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -39,19 +37,12 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -153,6 +144,9 @@
 
   body {
     @apply bg-background text-foreground font-medium;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   
   /* Ensure text is crisp and high-quality */
@@ -181,29 +175,65 @@
     @apply bg-card/30 backdrop-blur-md border border-border/40;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   }
-}
-
-/* Add spotlight effect to skill cards */
-.skill-card {
-  cursor: pointer;
-}
-
-.skill-card:hover {
-  transform: translateY(-5px);
-}
-
-/* JavaScript will handle setting the --x and --y variables */
-document.addEventListener('DOMContentLoaded', function() {
-  const skillCards = document.querySelectorAll('.skill-card');
   
-  skillCards.forEach(card => {
-    card.addEventListener('mousemove', function(e) {
-      const rect = card.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
-      
-      card.style.setProperty('--x', `${x}%`);
-      card.style.setProperty('--y', `${y}%`);
-    });
-  });
-});
+  /* Improved focus styles */
+  .focus-ring {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2;
+  }
+  
+  /* Better button hover styles */
+  .hover-lift {
+    @apply transition-all duration-300 hover:translate-y-[-2px] hover:shadow-md;
+  }
+  
+  /* Text shadow for better contrast */
+  .text-shadow {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dark .text-shadow {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Background image with overlay */
+.bg-with-overlay {
+  position: relative;
+}
+
+.bg-with-overlay::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(var(--primary-rgb), 0.1), rgba(var(--primary-rgb), 0.05));
+  z-index: -1;
+}
+
+/* Social spotlight effect */
+.social-spotlight {
+  background: radial-gradient(circle at var(--social-x, 50%) var(--social-y, 50%), rgba(var(--primary-rgb), 0.3) 0%, rgba(var(--primary-rgb), 0) 70%);
+}
+
+/* Enhanced scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.5);
+}
+
+/* Import Bootstrap Icons CSS */
+@import url("bootstrap-icons/font/bootstrap-icons.css");

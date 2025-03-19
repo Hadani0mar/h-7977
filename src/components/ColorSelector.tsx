@@ -15,16 +15,21 @@ const ColorSelector = ({ onChange }: ColorSelectorProps) => {
   ];
 
   return (
-    <ToggleGroup type="single" defaultValue="blue" onValueChange={onChange}>
-      {colors.map((color) => (
-        <ToggleGroupItem key={color.name} value={color.name} aria-label={`Set color theme to ${color.name}`}>
-          <div 
-            className={`w-8 h-8 rounded-full ${color.bg} ${color.hover} transition-colors`}
-            aria-hidden="true"
+    <div className="space-y-4">
+      <div className="flex flex-wrap gap-3">
+        {colors.map((color) => (
+          <button
+            key={color.name}
+            onClick={() => onChange(color.name)}
+            className={`w-10 h-10 rounded-full ${color.bg} ${color.hover} transition-all duration-300 shadow-md hover:shadow-lg hover:scale-110 focus:outline-none focus:ring-2 focus:ring-primary/50`}
+            aria-label={`Set color theme to ${color.name}`}
           />
-        </ToggleGroupItem>
-      ))}
-    </ToggleGroup>
+        ))}
+      </div>
+      <p className="text-sm text-muted-foreground">
+        <i className="bi bi-info-circle"></i> اختر لون الواجهة المفضل لديك
+      </p>
+    </div>
   );
 };
 

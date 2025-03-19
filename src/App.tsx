@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound";
 import "./styles/animations.css";
 import ThemeProvider from "@/components/ThemeProvider";
 import { initSpotlightEffects } from "@/utils/spotlightEffect";
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const queryClient = new QueryClient();
 
