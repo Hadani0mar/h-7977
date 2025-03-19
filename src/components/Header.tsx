@@ -1,25 +1,36 @@
 
 import { useTheme } from "@/components/ThemeProvider";
+import { motion } from "framer-motion";
 
 const Header = () => {
   const { theme } = useTheme();
   
   return (
-    <header className="py-6 px-4 md:px-6 relative overflow-hidden">
-      <div className="relative z-10 text-center">
-        <div className="inline-flex items-center justify-center gap-2 mb-2">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
+    <header className="py-8 px-4 md:px-6 relative overflow-hidden">
+      <motion.div 
+        className="relative z-10 text-center"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="inline-flex items-center justify-center gap-2 mb-3">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground bg-clip-text bg-gradient-to-r from-primary to-primary/70">
             Bn0mar
           </h1>
-          <div className="text-primary verification-badge" title="حساب موثق">
+          <motion.div 
+            className="text-primary verification-badge" 
+            title="حساب موثق"
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 0.9 }}
+          >
             <i className="bi bi-patch-check-fill text-2xl"></i>
-          </div>
+          </motion.div>
         </div>
         <p className="text-lg text-muted-foreground font-medium flex items-center justify-center gap-2">
           <i className="bi bi-code-slash"></i>
           Frontend Developer & UI Designer
         </p>
-      </div>
+      </motion.div>
       
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none -z-1 opacity-10">
         <div className="absolute top-0 right-0 bg-primary rounded-full w-64 h-64 filter blur-3xl"></div>

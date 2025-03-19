@@ -20,7 +20,7 @@ const App = () => {
     // Wait for DOM to be fully loaded
     setTimeout(() => {
       initSpotlightEffects();
-    }, 500);
+    }, 300);
   }, []);
 
   return (
@@ -32,7 +32,6 @@ const App = () => {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>

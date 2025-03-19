@@ -25,6 +25,16 @@ export default defineConfig(({ mode }) => ({
     target: 'es2018',
     outDir: 'dist',
     sourcemap: mode !== 'production',
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          ui: ['@radix-ui/react-tabs', '@radix-ui/react-dialog'],
+          animations: ['framer-motion'],
+        }
+      }
+    }
   },
   optimizeDeps: {
     esbuildOptions: {

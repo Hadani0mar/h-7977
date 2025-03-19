@@ -1,92 +1,73 @@
 
-import { createContext, useContext, useEffect, useState, ReactNode } from "react";
+"use client";
 
-export type Theme = "light" | "dark" | "system";
+import * as React from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
-interface ThemeContextProps {
-  theme: Theme;
-  setTheme: (theme: Theme) => void;
-}
+export type Theme = "dark" | "light" | "system";
 
-const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
-
-interface ThemeProviderProps {
-  children: ReactNode;
+type ThemeProviderProps = {
+  children: React.ReactNode;
   initialTheme?: Theme;
-}
-
-const ThemeProvider = ({ children, initialTheme = "system" }: ThemeProviderProps) => {
-  const [theme, setTheme] = useState<Theme>(
-    localStorage.getItem("theme") as Theme || initialTheme
-  );
-  
-  useEffect(() => {
-    const root = window.document.documentElement;
-    
-    // Clear existing theme classes
-    root.classList.remove("light", "dark");
-    
-    // Apply appropriate theme
-    if (theme === "system") {
-      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-      root.classList.add(systemTheme);
-    } else {
-      root.classList.add(theme);
-    }
-    
-    // Store theme preference
-    localStorage.setItem("theme", theme);
-    
-    // Apply text rendering improvements
-    root.style.textRendering = "optimizeLegibility";
-    root.style.webkitFontSmoothing = "antialiased";
-    root.style.mozOsxFontSmoothing = "grayscale";
-    
-    // Configure font display
-    const style = document.createElement('style');
-    style.textContent = `
-      @font-face {
-        font-family: 'Tajawal';
-        font-display: swap;
-      }
-    `;
-    document.head.appendChild(style);
-    
-    return () => {
-      document.head.removeChild(style);
-    };
-  }, [theme]);
-
-  // Listen for system theme changes
-  useEffect(() => {
-    if (theme === "system") {
-      const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-      
-      const handleChange = () => {
-        const root = window.document.documentElement;
-        root.classList.remove("light", "dark");
-        root.classList.add(mediaQuery.matches ? "dark" : "light");
-      };
-      
-      mediaQuery.addEventListener("change", handleChange);
-      return () => mediaQuery.removeEventListener("change", handleChange);
-    }
-  }, [theme]);
-
-  const value = { theme, setTheme };
-  
-  return (
-    <ThemeContext.Provider value={value}>
-      {children}
-    </ThemeContext.Provider>
-  );
 };
 
+type ThemeProviderState = {
+  theme: Theme;
+  setTheme: (theme: Theme) => void;
+};
+
+const initialState: ThemeProviderState = {
+  theme: "system",
+  setTheme: () => null,
+};
+
+const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
+
+export function ThemeProvider({
+  children,
+  initialTheme = "system",
+}: ThemeProviderProps) {
+  const [theme, setTheme] = useState<Theme>(initialTheme);
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+
+    root.classList.remove("light", "dark");
+
+    if (theme === "system") {
+      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
+        .matches
+        ? "dark"
+        : "light";
+
+      root.classList.add(systemTheme);
+      return;
+    }
+
+    root.classList.add(theme);
+    // Apply font smoothing
+    document.documentElement.style.setProperty("-webkit-font-smoothing", "antialiased");
+    document.documentElement.style.setProperty("-moz-osx-font-smoothing", "grayscale");
+  }, [theme]);
+
+  const value = {
+    theme,
+    setTheme: (theme: Theme) => setTheme(theme),
+  };
+
+  return (
+    <ThemeProviderContext.Provider value={value}>
+      {children}
+    </ThemeProviderContext.Provider>
+  );
+}
+
 export const useTheme = () => {
-  const context = useContext(ThemeContext);
-  if (context === undefined) {
+  const context = useContext(ThemeProviderContext);
+
+  if (context === undefined)
     throw new Error("useTheme must be used within a ThemeProvider");
-  }
+
   return context;
 };
 
