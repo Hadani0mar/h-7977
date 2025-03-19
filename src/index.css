@@ -1,4 +1,5 @@
-
+/* Import Bootstrap Icons CSS */
+@import url("bootstrap-icons/font/bootstrap-icons.css");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -393,5 +394,3 @@
   }
 }
 
-/* Import Bootstrap Icons CSS */
-@import url("bootstrap-icons/font/bootstrap-icons.css");
