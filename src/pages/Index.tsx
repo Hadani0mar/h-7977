@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -20,6 +19,8 @@ const Index = () => {
   const [accentColor, setAccentColor] = useState<string>("blue");
   const [fontSize, setFontSize] = useState<number>(100); // 100% is default
   const { theme, setTheme } = useTheme();
+  const [imageLoaded, setImageLoaded] = useState<boolean>(false);
+  const [imageError, setImageError] = useState<boolean>(false);
 
   // Apply font size to root element
   useEffect(() => {
@@ -38,6 +39,17 @@ const Index = () => {
   useEffect(() => {
     document.documentElement.dataset.accent = accentColor;
   }, [accentColor]);
+
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+    setImageError(false);
+  };
+
+  const handleImageError = () => {
+    console.error("Error loading image");
+    setImageError(true);
+    setImageLoaded(true);
+  };
 
   return (
     <div className="min-h-screen bg-background text-foreground pb-20 font-tajawal">
@@ -76,10 +88,22 @@ const Index = () => {
                       </p>
                     </div>
                     <div className="w-full md:w-1/3 flex-shrink-0">
+                      {!imageLoaded ? (
+                        <div className="flex items-center justify-center h-48 bg-muted/20 rounded-lg animate-pulse">
+                          <i className="bi bi-image text-4xl text-muted"></i>
+                        </div>
+                      ) : imageError ? (
+                        <div className="flex flex-col items-center justify-center h-48 bg-muted/10 rounded-lg border border-dashed border-muted">
+                          <i className="bi bi-exclamation-triangle text-3xl text-muted-foreground mb-2"></i>
+                          <p className="text-sm text-muted-foreground">يرجى إضافة صورة في مجلد الصور</p>
+                        </div>
+                      ) : null}
                       <img 
-                        src="https://storyset.com/illustration/code-typing/pana" 
+                        src="/src/assets/Programming Semi Flat Illustrations/programmer.png" 
                         alt="Developer illustration" 
-                        className="w-full h-auto object-contain"
+                        className={`w-full h-auto object-contain ${!imageLoaded || imageError ? 'hidden' : 'block'}`}
+                        onLoad={handleImageLoad}
+                        onError={handleImageError}
                       />
                     </div>
                   </div>
