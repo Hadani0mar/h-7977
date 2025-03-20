@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -99,7 +100,7 @@ const Index = () => {
                         </div>
                       ) : null}
                       <img 
-                        src="/src/assets/Programming Semi Flat Illustrations/programmer.png" 
+                        src="/src/assets/Programming Semi Flat Illustrations/Programming-pana.png" 
                         alt="Developer illustration" 
                         className={`w-full h-auto object-contain ${!imageLoaded || imageError ? 'hidden' : 'block'}`}
                         onLoad={handleImageLoad}
