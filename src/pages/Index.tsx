@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -76,7 +77,7 @@ const Index = () => {
                     </div>
                     <div className="w-full md:w-1/3 flex-shrink-0">
                       <img 
-                        src="https://blush.design/api/download?shareUri=uPWKM9G9E&w=800&h=800&fm=png" 
+                        src="https://storyset.com/illustration/code-typing/pana" 
                         alt="Developer illustration" 
                         className="w-full h-auto object-contain"
                       />
