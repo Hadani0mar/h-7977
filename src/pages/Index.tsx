@@ -62,15 +62,26 @@ const Index = () => {
             >
               <Card className="border border-border/40 glass-card hover:shadow-lg transition-all duration-300">
                 <CardContent className="p-6">
-                  <h2 className="text-2xl font-semibold mb-4 text-foreground flex items-center gap-2">
-                    <i className="bi bi-house-door"></i>
-                    مرحباً بك في ملفي الشخصي
-                  </h2>
-                  <p className="text-muted-foreground text-base leading-relaxed">
-                    أنا مطور واجهات أمامية متخصص في إنشاء تجارب مستخدم سلسة وجذابة. أعمل على تطوير تطبيقات الويب
-                    باستخدام أحدث التقنيات والأدوات. أسعى دائمًا لتعلم كل ما هو جديد في عالم تطوير الويب وتطبيقه
-                    في مشاريعي.
-                  </p>
+                  <div className="flex flex-col md:flex-row gap-6 items-center">
+                    <div className="flex-1">
+                      <h2 className="text-2xl font-semibold mb-4 text-foreground flex items-center gap-2">
+                        <i className="bi bi-house-door"></i>
+                        مرحباً بك في ملفي الشخصي
+                      </h2>
+                      <p className="text-muted-foreground text-base leading-relaxed">
+                        أنا مطور واجهات أمامية متخصص في إنشاء تجارب مستخدم سلسة وجذابة. أعمل على تطوير تطبيقات الويب
+                        باستخدام أحدث التقنيات والأدوات. أسعى دائمًا لتعلم كل ما هو جديد في عالم تطوير الويب وتطبيقه
+                        في مشاريعي.
+                      </p>
+                    </div>
+                    <div className="w-full md:w-1/3 flex-shrink-0">
+                      <img 
+                        src="https://blush.design/api/download?shareUri=uPWKM9G9E&w=800&h=800&fm=png" 
+                        alt="Developer illustration" 
+                        className="w-full h-auto object-contain"
+                      />
+                    </div>
+                  </div>
                   
                   <div className="mt-6 p-4 bg-primary/5 backdrop-blur-sm rounded-lg border border-primary/10">
                     <h3 className="text-lg font-medium mb-3 text-foreground flex items-center gap-2">
@@ -129,6 +140,7 @@ const Index = () => {
                   link="https://ahadith-sdbc.web.app/"
                   tags={["React", "Tailwind CSS", "TypeScript"]}
                   githubLink="https://github.com/username/ahadith-sdbc"
+                  imageSrc="https://blush.design/api/download?shareUri=Oj0M2R1lB&w=800&h=800&fm=png"
                 />
                 <ProjectCard 
                   title="موقع تفاعلي" 
@@ -136,18 +148,21 @@ const Index = () => {
                   link="https://example.com/project2"
                   tags={["Next.js", "Framer Motion", "Shadcn UI"]}
                   githubLink="https://github.com/username/interactive-website"
+                  imageSrc="https://blush.design/api/download?shareUri=czQF0xR0H&w=800&h=800&fm=png"
                 />
                 <ProjectCard 
                   title="منصة تعليمية" 
                   description="منصة تعليمية متكاملة تتيح للمستخدمين متابعة دوراتهم وتقدمهم، مع نظام إدارة متكامل للمحتوى." 
                   link="https://example.com/project3"
                   tags={["React", "Node.js", "MongoDB"]}
+                  imageSrc="https://blush.design/api/download?shareUri=Y3cXGbcEu&w=800&h=800&fm=png"
                 />
                 <ProjectCard 
                   title="تطبيق متجر إلكتروني" 
                   description="متجر إلكتروني كامل مع سلة تسوق وبوابة دفع آمنة وإدارة للمنتجات والطلبات." 
                   link="https://example.com/project4"
                   tags={["Next.js", "Stripe", "Prisma"]}
+                  imageSrc="https://blush.design/api/download?shareUri=Wx6K3yyIa&w=800&h=800&fm=png"
                 />
               </div>
             </motion.div>
@@ -158,7 +173,15 @@ const Index = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
+              className="relative"
             >
+              <div className="absolute top-10 right-10 -z-10 opacity-10 dark:opacity-5 pointer-events-none">
+                <img 
+                  src="https://blush.design/api/download?shareUri=LFoXqbZvN&w=800&h=800&fm=png" 
+                  alt="Contact illustration" 
+                  className="w-64 h-64 object-contain"
+                />
+              </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <SocialCard 
                   platform="TikTok" 
@@ -204,7 +227,15 @@ const Index = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
+              className="relative"
             >
+              <div className="absolute bottom-10 left-10 -z-10 opacity-10 dark:opacity-5 pointer-events-none">
+                <img 
+                  src="https://blush.design/api/download?shareUri=FeJolOyYQ&w=800&h=800&fm=png" 
+                  alt="Settings illustration" 
+                  className="w-64 h-64 object-contain"
+                />
+              </div>
               <Card className="border border-border/40 glass-card hover:shadow-lg transition-all duration-300">
                 <CardContent className="p-6">
                   <h2 className="text-2xl font-semibold mb-6 text-foreground flex items-center gap-2">

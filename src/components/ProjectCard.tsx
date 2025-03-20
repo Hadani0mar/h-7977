@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Github, Code } from "lucide-react";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 interface ProjectCardProps {
   title: string;
@@ -10,9 +11,17 @@ interface ProjectCardProps {
   link: string;
   tags?: string[];
   githubLink?: string;
+  imageSrc?: string;
 }
 
-const ProjectCard = ({ title, description, link, tags = [], githubLink }: ProjectCardProps) => {
+const ProjectCard = ({ 
+  title, 
+  description, 
+  link, 
+  tags = [], 
+  githubLink,
+  imageSrc 
+}: ProjectCardProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
@@ -21,6 +30,18 @@ const ProjectCard = ({ title, description, link, tags = [], githubLink }: Projec
       whileHover={{ y: -5 }}
     >
       <Card className="border border-border/40 bg-card/30 backdrop-blur-md hover:shadow-lg transition-all duration-300 h-full glass-card overflow-hidden">
+        {imageSrc && (
+          <div className="w-full overflow-hidden">
+            <AspectRatio ratio={16 / 9} className="bg-muted">
+              <img
+                src={imageSrc}
+                alt={title}
+                className="object-cover w-full h-full transition-all hover:scale-105 duration-500"
+              />
+            </AspectRatio>
+          </div>
+        )}
+        
         <CardContent className="p-6 space-y-4">
           <div className="flex justify-between items-start">
             <h3 className="text-xl font-semibold text-foreground">{title}</h3>
