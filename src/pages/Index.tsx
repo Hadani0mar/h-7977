@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -100,12 +99,15 @@ const Index = () => {
                         </div>
                       ) : null}
                       <img 
-                        src="/src/assets/Programming Semi Flat Illustrations/Programming-pana.png" 
+                        src="https://storyset.com/illustration/data-reports/pana" 
                         alt="Developer illustration" 
                         className={`w-full h-auto object-contain ${!imageLoaded || imageError ? 'hidden' : 'block'}`}
                         onLoad={handleImageLoad}
                         onError={handleImageError}
                       />
+                      <div className="text-center text-xs text-muted-foreground mt-2">
+                        <a href="https://storyset.com/data" target="_blank" rel="noopener noreferrer">Data illustrations by Storyset</a>
+                      </div>
                     </div>
                   </div>
                   
@@ -169,27 +171,16 @@ const Index = () => {
                   imageSrc="https://blush.design/api/download?shareUri=Oj0M2R1lB&w=800&h=800&fm=png"
                 />
                 <ProjectCard 
-                  title="موقع تفاعلي" 
-                  description="موقع تفاعلي متجاوب مع جميع أحجام الشاشات، يتضمن تأثيرات حركية متقدمة وواجهة مستخدم حديثة." 
+                  title="Bn0mar-AI" 
+                  description="مساعد ليبي مهمته مساعدة المبرمجين لحل الأخطاء والتعلم بطريقة سهلة وبسيطة." 
                   link="https://example.com/project2"
-                  tags={["Next.js", "Framer Motion", "Shadcn UI"]}
+                  tags={["Next.js", "AI", "NLP"]}
                   githubLink="https://github.com/username/interactive-website"
-                  imageSrc="https://blush.design/api/download?shareUri=czQF0xR0H&w=800&h=800&fm=png"
+                  imageSrc="https://storyset.com/illustration/artificial-intelligence/pana"
                 />
-                <ProjectCard 
-                  title="منصة تعليمية" 
-                  description="منصة تعليمية متكاملة تتيح للمستخدمين متابعة دوراتهم وتقدمهم، مع نظام إدارة متكامل للمحتوى." 
-                  link="https://example.com/project3"
-                  tags={["React", "Node.js", "MongoDB"]}
-                  imageSrc="https://blush.design/api/download?shareUri=Y3cXGbcEu&w=800&h=800&fm=png"
-                />
-                <ProjectCard 
-                  title="تطبيق متجر إلكتروني" 
-                  description="متجر إلكتروني كامل مع سلة تسوق وبوابة دفع آمنة وإدارة للمنتجات والطلبات." 
-                  link="https://example.com/project4"
-                  tags={["Next.js", "Stripe", "Prisma"]}
-                  imageSrc="https://blush.design/api/download?shareUri=Wx6K3yyIa&w=800&h=800&fm=png"
-                />
+                <div className="md:col-span-2 text-center mt-2 text-xs text-muted-foreground">
+                  <a href="https://storyset.com/technology" target="_blank" rel="noopener noreferrer">Technology illustrations by Storyset</a>
+                </div>
               </div>
             </motion.div>
           </TabsContent>
@@ -201,13 +192,6 @@ const Index = () => {
               transition={{ duration: 0.5 }}
               className="relative"
             >
-              <div className="absolute top-10 right-10 -z-10 opacity-10 dark:opacity-5 pointer-events-none">
-                <img 
-                  src="https://blush.design/api/download?shareUri=LFoXqbZvN&w=800&h=800&fm=png" 
-                  alt="Contact illustration" 
-                  className="w-64 h-64 object-contain"
-                />
-              </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <SocialCard 
                   platform="TikTok" 

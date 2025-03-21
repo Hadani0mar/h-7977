@@ -37,6 +37,92 @@ npm i
 npm run dev
 ```
 
+## كيفية إضافة مشاريع جديدة
+
+### إضافة مشروع جديد في قسم المشاريع
+
+لإضافة مشروع جديد إلى قسم المشاريع، يجب تعديل ملف `src/pages/Index.tsx` كما يلي:
+
+1. ابحث عن قسم المشاريع في الملف:
+
+```tsx
+<TabsContent value="projects" className="animate-fade-in space-y-6">
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.5 }}
+  >
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      // هنا توجد بطاقات المشاريع الحالية
+    </div>
+  </motion.div>
+</TabsContent>
+```
+
+2. أضف بطاقة مشروع جديدة ضمن عنصر `<div className="grid...">`:
+
+```tsx
+<ProjectCard 
+  title="عنوان المشروع الجديد" 
+  description="وصف تفصيلي للمشروع الجديد..." 
+  link="https://رابط-المشروع-الحي.com"
+  tags={["التقنية1", "التقنية2", "التقنية3"]}
+  githubLink="https://github.com/username/repository-name"
+  imageSrc="رابط-صورة-المشروع.png"
+/>
+```
+
+3. تأكد من تعبئة الحقول التالية:
+   - `title`: عنوان المشروع
+   - `description`: وصف تفصيلي للمشروع
+   - `link`: رابط للنسخة الحية من المشروع (اختياري)
+   - `tags`: مصفوفة من التقنيات المستخدمة في المشروع
+   - `githubLink`: رابط مستودع GitHub للمشروع (اختياري)
+   - `imageSrc`: رابط لصورة توضيحية للمشروع (اختياري)
+
+4. إذا كنت تستخدم صورًا من خدمات خارجية مثل Storyset، تأكد من إضافة الإسناد المناسب:
+
+```tsx
+<div className="md:col-span-2 text-center mt-2 text-xs text-muted-foreground">
+  <a href="https://storyset.com/category" target="_blank" rel="noopener noreferrer">Category illustrations by Storyset</a>
+</div>
+```
+
+### أمثلة على إضافة أنواع مختلفة من المشاريع
+
+#### مشروع تطبيق ويب:
+
+```tsx
+<ProjectCard 
+  title="تطبيق إدارة المهام" 
+  description="تطبيق ويب لإدارة المهام اليومية مع إمكانية تتبع الإنجازات والمواعيد النهائية" 
+  link="https://tasks-app.example.com"
+  tags={["React", "Firebase", "Tailwind CSS"]}
+  githubLink="https://github.com/username/tasks-app"
+  imageSrc="https://example.com/images/tasks-app.png"
+/>
+```
+
+#### مشروع مكتبة برمجية:
+
+```tsx
+<ProjectCard 
+  title="مكتبة React للرسوم البيانية" 
+  description="مكتبة React مفتوحة المصدر لعرض وتفاعل الرسوم البيانية بطريقة سهلة وجذابة" 
+  tags={["TypeScript", "React", "D3.js"]}
+  githubLink="https://github.com/username/react-charts-lib"
+  imageSrc="https://example.com/images/react-charts.png"
+/>
+```
+
+### تخصيص بطاقات المشاريع
+
+إذا كنت ترغب في تعديل شكل بطاقات المشاريع، يمكنك إنشاء نسخة من مكون `ProjectCard` وتخصيصه بالشكل الذي تريده:
+
+1. أنشئ ملف جديد في `src/components/CustomProjectCard.tsx`
+2. انسخ محتوى `ProjectCard.tsx` الأصلي وعدّله حسب احتياجاتك
+3. استخدم المكون المخصص بدلاً من المكون الأصلي في `Index.tsx`
+
 ## دليل التخصيص الشامل
 
 ### 1. تخصيص المعلومات الشخصية
