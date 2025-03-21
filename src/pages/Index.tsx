@@ -13,6 +13,7 @@ import SkillSection from "@/components/SkillSection";
 import ColorSelector from "@/components/ColorSelector";
 import Header from "@/components/Header";
 import TourGuide from "@/components/TourGuide";
+import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState<string>("home");
@@ -21,6 +22,7 @@ const Index = () => {
   const { theme, setTheme } = useTheme();
   const [imageLoaded, setImageLoaded] = useState<boolean>(false);
   const [imageError, setImageError] = useState<boolean>(false);
+  const { toast } = useToast();
 
   // Apply font size to root element
   useEffect(() => {
@@ -95,11 +97,11 @@ const Index = () => {
                       ) : imageError ? (
                         <div className="flex flex-col items-center justify-center h-48 bg-muted/10 rounded-lg border border-dashed border-muted">
                           <i className="bi bi-exclamation-triangle text-3xl text-muted-foreground mb-2"></i>
-                          <p className="text-sm text-muted-foreground">يرجى إضافة صورة في مجلد الصور</p>
+                          <p className="text-sm text-muted-foreground">يرجى التحقق من رابط الصورة</p>
                         </div>
                       ) : null}
                       <img 
-                        src="https://storyset.com/illustration/data-reports/pana" 
+                        src="https://storyset.com/illustration/data-report/amico" 
                         alt="Developer illustration" 
                         className={`w-full h-auto object-contain ${!imageLoaded || imageError ? 'hidden' : 'block'}`}
                         onLoad={handleImageLoad}
@@ -168,15 +170,18 @@ const Index = () => {
                   link="https://ahadith-sdbc.web.app/"
                   tags={["React", "Tailwind CSS", "TypeScript"]}
                   githubLink="https://github.com/username/ahadith-sdbc"
-                  imageSrc="https://blush.design/api/download?shareUri=Oj0M2R1lB&w=800&h=800&fm=png"
+                  imageSrc="https://images.unsplash.com/photo-1519682577862-22b62b24e493?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                  isFeatured={true}
                 />
                 <ProjectCard 
                   title="Bn0mar-AI" 
                   description="مساعد ليبي مهمته مساعدة المبرمجين لحل الأخطاء والتعلم بطريقة سهلة وبسيطة." 
-                  link="https://example.com/project2"
+                  link="https://mousa-0mar.web.app/"
                   tags={["Next.js", "AI", "NLP"]}
-                  githubLink="https://github.com/username/interactive-website"
-                  imageSrc="https://storyset.com/illustration/artificial-intelligence/pana"
+                  githubLink="https://github.com/username/bn0mar-ai"
+                  imageSrc="https://images.unsplash.com/photo-1677442135148-38d189f26ed3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80"
+                  isFeatured={true}
+                  additionalInfo="يستخدم نموذج GPT-4o مما قد يجعل استجابته بطيئة - سيتم إضافة ذاكرة وتحسينات في التحديثات القادمة! 🚀"
                 />
                 <div className="md:col-span-2 text-center mt-2 text-xs text-muted-foreground">
                   <a href="https://storyset.com/technology" target="_blank" rel="noopener noreferrer">Technology illustrations by Storyset</a>
@@ -241,11 +246,12 @@ const Index = () => {
             >
               <div className="absolute bottom-10 left-10 -z-10 opacity-10 dark:opacity-5 pointer-events-none">
                 <img 
-                  src="https://blush.design/api/download?shareUri=FeJolOyYQ&w=800&h=800&fm=png" 
+                  src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
                   alt="Settings illustration" 
                   className="w-64 h-64 object-contain"
                 />
               </div>
+              
               <Card className="border border-border/40 glass-card hover:shadow-lg transition-all duration-300">
                 <CardContent className="p-6">
                   <h2 className="text-2xl font-semibold mb-6 text-foreground flex items-center gap-2">

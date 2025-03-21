@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Github, ImageIcon } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { cn } from "@/lib/utils";
+import { useToast } from "@/hooks/use-toast";
 
 interface ProjectCardProps {
   title: string;
@@ -14,6 +15,8 @@ interface ProjectCardProps {
   tags?: string[];
   githubLink?: string;
   imageSrc?: string;
+  isFeatured?: boolean;
+  additionalInfo?: string;
 }
 
 const ProjectCard = ({ 
@@ -22,10 +25,13 @@ const ProjectCard = ({
   link, 
   tags = [], 
   githubLink,
-  imageSrc 
+  imageSrc,
+  isFeatured = false,
+  additionalInfo
 }: ProjectCardProps) => {
   const [imageError, setImageError] = useState(false);
   const [imageLoading, setImageLoading] = useState(true);
+  const { toast } = useToast();
   
   // Handle image load error
   const handleImageError = () => {
@@ -80,12 +86,21 @@ const ProjectCard = ({
         <CardContent className="p-6 space-y-4">
           <div className="flex justify-between items-start">
             <h3 className="text-xl font-semibold text-foreground">{title}</h3>
-            <div className="text-primary" title="مشروع مميز">
-              <i className="bi bi-star-fill"></i>
-            </div>
+            {isFeatured && (
+              <div className="text-primary" title="مشروع مميز">
+                <i className="bi bi-star-fill"></i>
+              </div>
+            )}
           </div>
           
           <p className="text-muted-foreground text-base">{description}</p>
+          
+          {additionalInfo && (
+            <p className="text-sm text-amber-500 dark:text-yellow-400 font-medium flex items-center gap-2">
+              <i className="bi bi-info-circle"></i>
+              {additionalInfo}
+            </p>
+          )}
           
           {tags.length > 0 && (
             <div className="flex flex-wrap gap-2 mt-2">
