@@ -15,7 +15,7 @@ import ColorSelector from "@/components/ColorSelector";
 import Header from "@/components/Header";
 import TourGuide from "@/components/TourGuide";
 import { useToast } from "@/hooks/use-toast";
-import { Database, Bot, BrainCircuit } from "lucide-react";
+import { Bot, Home, BrainCircuit } from "lucide-react";
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState<string>("home");
@@ -80,7 +80,7 @@ const Index = () => {
                     </div>
                     <div className="w-full md:w-1/3 flex-shrink-0 flex items-center justify-center">
                       <div className="text-primary/80 rounded-full bg-primary/10 p-6 border border-primary/20">
-                        <Database size={120} className="animate-pulse" />
+                        <Home size={120} className="animate-pulse" />
                       </div>
                     </div>
                   </div>
@@ -147,14 +147,18 @@ const Index = () => {
                 />
                 <ProjectCard 
                   title="Bn0mar-AI" 
-                  description="مساعد ليبي مهمته مساعدة المبرمجين لحل الأخطاء والتعلم بطريقة سهلة وبسيطة." 
+                  description="مساعد ليبي مهمته مساعدة المبرمجين لحل الأخطاء والتعلم بطريقة سهلة وبسيطة. يتكلم باللهجة الليبية ويتعلم من المستخدمين." 
                   link="https://my-protofile-7f233.web.app/"
                   tags={["Next.js", "AI", "NLP"]}
                   githubLink="https://github.com/username/bn0mar-ai"
                   isFeatured={true}
                   customIcon={<BrainCircuit size={80} className="text-primary/70" />}
-                  additionalInfo="يستخدم نموذج GPT-4o مما قد يجعل استجابته بطيئة - سيتم إضافة ذاكرة وتحسينات في التحديثات القادمة! 🚀"
+                  additionalInfo="قد يكون بطيء بسبب المعالجة والضغط عليه، سيتحسن مع التحديثات القادمة! 🚀"
                 />
+              </div>
+              
+              <div className="md:col-span-2 text-center mt-4 text-xs text-muted-foreground">
+                <a href="https://storyset.com/illustration" target="_blank" rel="noopener noreferrer">Illustrations by Storyset</a>
               </div>
             </motion.div>
           </TabsContent>
@@ -213,14 +217,6 @@ const Index = () => {
               transition={{ duration: 0.5 }}
               className="relative"
             >
-              <div className="absolute bottom-10 left-10 -z-10 opacity-10 dark:opacity-5 pointer-events-none">
-                <img 
-                  src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
-                  alt="Settings illustration" 
-                  className="w-64 h-64 object-contain"
-                />
-              </div>
-              
               <Card className="border border-border/40 glass-card hover:shadow-lg transition-all duration-300">
                 <CardContent className="p-6">
                   <h2 className="text-2xl font-semibold mb-6 text-foreground flex items-center gap-2">
