@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -170,22 +171,21 @@ const Index = () => {
                   link="https://ahadith-sdbc.web.app/"
                   tags={["React", "Tailwind CSS", "TypeScript"]}
                   githubLink="https://github.com/username/ahadith-sdbc"
-                  imageSrc="https://images.unsplash.com/photo-1519682577862-22b62b24e493?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
                   isFeatured={true}
                 />
                 <ProjectCard 
                   title="Bn0mar-AI" 
                   description="مساعد ليبي مهمته مساعدة المبرمجين لحل الأخطاء والتعلم بطريقة سهلة وبسيطة." 
-                  link="https://mousa-0mar.web.app/"
+                  link="https://my-protofile-7f233.web.app/"
                   tags={["Next.js", "AI", "NLP"]}
                   githubLink="https://github.com/username/bn0mar-ai"
-                  imageSrc="https://images.unsplash.com/photo-1677442135148-38d189f26ed3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80"
+                  imageSrc="https://storyset.com/illustration/artificial-intelligence/amico"
                   isFeatured={true}
                   additionalInfo="يستخدم نموذج GPT-4o مما قد يجعل استجابته بطيئة - سيتم إضافة ذاكرة وتحسينات في التحديثات القادمة! 🚀"
                 />
-                <div className="md:col-span-2 text-center mt-2 text-xs text-muted-foreground">
-                  <a href="https://storyset.com/technology" target="_blank" rel="noopener noreferrer">Technology illustrations by Storyset</a>
-                </div>
+              </div>
+              <div className="text-center mt-4 text-xs text-muted-foreground">
+                <a href="https://storyset.com/technology" target="_blank" rel="noopener noreferrer">Technology illustrations by Storyset</a>
               </div>
             </motion.div>
           </TabsContent>
