@@ -15,14 +15,13 @@ import ColorSelector from "@/components/ColorSelector";
 import Header from "@/components/Header";
 import TourGuide from "@/components/TourGuide";
 import { useToast } from "@/hooks/use-toast";
+import { Database, Bot, BrainCircuit } from "lucide-react";
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState<string>("home");
   const [accentColor, setAccentColor] = useState<string>("blue");
   const [fontSize, setFontSize] = useState<number>(100); // 100% is default
   const { theme, setTheme } = useTheme();
-  const [imageLoaded, setImageLoaded] = useState<boolean>(false);
-  const [imageError, setImageError] = useState<boolean>(false);
   const { toast } = useToast();
 
   // Apply font size to root element
@@ -42,17 +41,6 @@ const Index = () => {
   useEffect(() => {
     document.documentElement.dataset.accent = accentColor;
   }, [accentColor]);
-
-  const handleImageLoad = () => {
-    setImageLoaded(true);
-    setImageError(false);
-  };
-
-  const handleImageError = () => {
-    console.error("Error loading image");
-    setImageError(true);
-    setImageLoaded(true);
-  };
 
   return (
     <div className="min-h-screen bg-background text-foreground pb-20 font-tajawal">
@@ -90,26 +78,9 @@ const Index = () => {
                         في مشاريعي.
                       </p>
                     </div>
-                    <div className="w-full md:w-1/3 flex-shrink-0">
-                      {!imageLoaded ? (
-                        <div className="flex items-center justify-center h-48 bg-muted/20 rounded-lg animate-pulse">
-                          <i className="bi bi-image text-4xl text-muted"></i>
-                        </div>
-                      ) : imageError ? (
-                        <div className="flex flex-col items-center justify-center h-48 bg-muted/10 rounded-lg border border-dashed border-muted">
-                          <i className="bi bi-exclamation-triangle text-3xl text-muted-foreground mb-2"></i>
-                          <p className="text-sm text-muted-foreground">يرجى التحقق من رابط الصورة</p>
-                        </div>
-                      ) : null}
-                      <img 
-                        src="https://storyset.com/illustration/data-report/amico" 
-                        alt="Developer illustration" 
-                        className={`w-full h-auto object-contain ${!imageLoaded || imageError ? 'hidden' : 'block'}`}
-                        onLoad={handleImageLoad}
-                        onError={handleImageError}
-                      />
-                      <div className="text-center text-xs text-muted-foreground mt-2">
-                        <a href="https://storyset.com/data" target="_blank" rel="noopener noreferrer">Data illustrations by Storyset</a>
+                    <div className="w-full md:w-1/3 flex-shrink-0 flex items-center justify-center">
+                      <div className="text-primary/80 rounded-full bg-primary/10 p-6 border border-primary/20">
+                        <Database size={120} className="animate-pulse" />
                       </div>
                     </div>
                   </div>
@@ -172,6 +143,7 @@ const Index = () => {
                   tags={["React", "Tailwind CSS", "TypeScript"]}
                   githubLink="https://github.com/username/ahadith-sdbc"
                   isFeatured={true}
+                  customIcon={<Bot size={80} className="text-primary/70" />}
                 />
                 <ProjectCard 
                   title="Bn0mar-AI" 
@@ -179,13 +151,10 @@ const Index = () => {
                   link="https://my-protofile-7f233.web.app/"
                   tags={["Next.js", "AI", "NLP"]}
                   githubLink="https://github.com/username/bn0mar-ai"
-                  imageSrc="https://storyset.com/illustration/artificial-intelligence/amico"
                   isFeatured={true}
+                  customIcon={<BrainCircuit size={80} className="text-primary/70" />}
                   additionalInfo="يستخدم نموذج GPT-4o مما قد يجعل استجابته بطيئة - سيتم إضافة ذاكرة وتحسينات في التحديثات القادمة! 🚀"
                 />
-              </div>
-              <div className="text-center mt-4 text-xs text-muted-foreground">
-                <a href="https://storyset.com/technology" target="_blank" rel="noopener noreferrer">Technology illustrations by Storyset</a>
               </div>
             </motion.div>
           </TabsContent>

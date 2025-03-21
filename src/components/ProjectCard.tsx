@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, ReactNode } from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -17,6 +17,7 @@ interface ProjectCardProps {
   imageSrc?: string;
   isFeatured?: boolean;
   additionalInfo?: string;
+  customIcon?: ReactNode; // Added support for custom SVG icons
 }
 
 const ProjectCard = ({ 
@@ -27,7 +28,8 @@ const ProjectCard = ({
   githubLink,
   imageSrc,
   isFeatured = false,
-  additionalInfo
+  additionalInfo,
+  customIcon
 }: ProjectCardProps) => {
   const [imageError, setImageError] = useState(false);
   const [imageLoading, setImageLoading] = useState(true);
@@ -53,7 +55,17 @@ const ProjectCard = ({
       whileHover={{ y: -5 }}
     >
       <Card className="border border-border/40 bg-card/30 backdrop-blur-md hover:shadow-lg transition-all duration-300 h-full glass-card overflow-hidden">
-        {imageSrc && (
+        {/* Display custom icon if provided */}
+        {customIcon && (
+          <div className="flex items-center justify-center p-6 bg-card/50">
+            <div className="bg-primary/10 p-4 rounded-full">
+              {customIcon}
+            </div>
+          </div>
+        )}
+        
+        {/* Display image only if customIcon is not provided and imageSrc exists */}
+        {!customIcon && imageSrc && (
           <div className="w-full overflow-hidden">
             <AspectRatio ratio={16 / 9} className="bg-muted relative">
               {imageLoading && (
